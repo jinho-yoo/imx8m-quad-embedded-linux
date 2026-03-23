@@ -24,7 +24,7 @@ This project demonstrates the full-stack development of an embedded Linux system
 - Toolchain: aarch64-poky-linux
 
 ## 🚀 Boot Process & Logs
-
+```
 Below is the serial console output (UART) showing the successful initialization of the ARMv8-A cores and the transition from U-Boot to the Linux Kernel.
 
 U-Boot 2024.01 (Mar 23 2026 - 10:00:00 +0900)
@@ -63,7 +63,7 @@ Starting kernel ...
 [ 2.567890] systemd[1]: Reached target Multi-User System.
 
 i.MX8M-Quad Login: root
-
+```
 ## 🔧 Key Engineering Highlights
 
 - DDR Optimization: Adjusted LPDDR4 training parameters in U-Boot for system stability.
