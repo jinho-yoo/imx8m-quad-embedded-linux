@@ -24,9 +24,9 @@ This project demonstrates the full-stack development of an embedded Linux system
 - Toolchain: aarch64-poky-linux
 
 ## 🚀 Boot Process & Logs
-```
-Below is the serial console output (UART) showing the successful initialization of the ARMv8-A cores and the transition from U-Boot to the Linux Kernel.
 
+Below is the serial console output (UART) showing the successful initialization of the ARMv8-A cores and the transition from U-Boot to the Linux Kernel.
+```
 U-Boot 2024.01 (Mar 23 2026 - 10:00:00 +0900)
 
 CPU: Freescale i.MX8MQ rev2.1 1500 MHz (running at 1000 MHz)
