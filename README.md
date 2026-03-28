@@ -22,6 +22,7 @@ This project demonstrates the full-stack development of an embedded Linux system
 - Build System: Yocto Project (Mickledore) / meta-freescale
 - RootFS: Minimal Image (Console-based) / Qt6 Integrated (Optional)
 - Toolchain: aarch64-poky-linux
+- Detailed U-Boot analysis can be found in [U-Boot.md](./U-Boot.md).
 
 ## 🚀 Boot Process & Logs
 
