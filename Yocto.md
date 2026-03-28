@@ -176,6 +176,16 @@ After a successful build, the output images are located in:
 ```
 tmp/deploy/images/imx8mqevk/
 ```
+
+### Key Output Files (tmp/deploy/images/imx8mqevk/)
+
+| **Artifact Type** | **Filename Example** | **Description** |
+| **Bootloader** | flash.bin | Combined image of SPL, ATF, and U-Boot Proper. |
+| **Kernel** | Image | The uncompressed Linux Kernel binary. |
+| **Device Tree** | imx8mq-evk.dtb | Binary description of the hardware layout. |
+| **RootFS** | core-image-minimal-\*.tar.bz2 | The complete root filesystem directory structure. |
+| **Full Image** | core-image-minimal-\*.wic.bz2 | **The all-in-one image** for SD card flashing. |
+
 ### Key Artifacts:
 
 -   imx-boot-imx8mqevk-sd.bin-flash\_evk: Combined bootloader image.
