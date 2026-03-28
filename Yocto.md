@@ -92,7 +92,9 @@ bzcat core-image-minimal-imx8mqevk.wic.bz2 | sudo dd of=/dev/sdX bs=1M conv=fsyn
 -   **Fetch Errors:** If a download fails, try re-running bitbake; it will resume from where it left off.  
 
 
-<hr style="border: double 10px #000;">
+<hr style="border: double 5px #000;">
+<hr style="border: double 5px #000;">
+
 
 ## 💻 Building on WSL2 (Windows Subsystem for Linux)
 
