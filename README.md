@@ -18,11 +18,12 @@ This project demonstrates the full-stack development of an embedded Linux system
 ## 🛠 Software Stack
 
 - Bootloader: U-Boot v2024.01 (Customized for i.MX8M DDR timing)
+  Detailed U-Boot analysis can be found in [U-Boot.md](./U-Boot.md). 
 - Kernel: Linux Kernel v6.1.x (LTS) with custom Device Tree (DTS)
 - Build System: Yocto Project (Mickledore) / meta-freescale
 - RootFS: Minimal Image (Console-based) / Qt6 Integrated (Optional)
 - Toolchain: aarch64-poky-linux
-- Detailed U-Boot analysis can be found in [U-Boot.md](./U-Boot.md).
+
 
 ## 🚀 Boot Process & Logs
 
