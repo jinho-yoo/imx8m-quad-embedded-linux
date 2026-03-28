@@ -73,16 +73,21 @@ i.MX8M-Quad Login: root
 ## 📜 How to Build
 
 ### 1. Initialize the Yocto environment:
+```
    repo init -u [https://github.com/your-id/imx8m-manifest](https://github.com/your-id/imx8m-manifest) -b mickledore
    repo sync
+```
 ### 2. Set up the build configuration:
+```
    source setup-environment build
+```
 ### 3. Build the core image:
+```
    bitbake core-image-minimal
-
+```
 ## 👤 Contact & Portfolio
 
-- Developer: [Your Name]
-- GitHub: https://github.com/your-id
+- Developer: [Jinho Yoo]
+- GitHub: https://github.com/jinho-yoo
 - LinkedIn: https://linkedin.com/in/your-profile
-- Email: your-email@example.com
+- Email: yoo.jinho@gmail.com
