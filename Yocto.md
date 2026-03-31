@@ -29,6 +29,8 @@ We use the repo tool to manage multiple layers including meta-freescale.
 ```
 mkdir imx8m-yocto-bsp  
 cd imx8m-yocto-bsp  
+
+sudo apt install repo
   
 \# Initialize for Mickledore release  
 repo init -u \https://github.com/nxp-imx/imx-manifest\https://github.com/nxp-imx/imx-manifest -b imx-linux-mickledore -m imx-6.1.36-2.1.0.xml
