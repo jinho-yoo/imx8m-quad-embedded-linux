@@ -75,7 +75,10 @@ sudo locale-gen en_US.UTF-8
 sudo update-locale LC_ALL=en_US.UTF-8 LANG=en_US.UTF-8
 export LANG=en_US.UTF-8  
 
-bitbake core-image-minimal  
+bitbake core-image-minimal
+위 명령이 안된다면 아래를 수행
+source setup-environment build
+
 ```
 ### Build Multimedia Image (with Qt6)
 ```
