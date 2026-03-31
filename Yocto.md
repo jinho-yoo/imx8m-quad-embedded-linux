@@ -70,6 +70,9 @@ sudo apt-get update
 sudo apt-get install locales
 sudo locale-gen en_US.UTF-8
 
+sudo update-locale LC_ALL=en_US.UTF-8 LANG=en_US.UTF-8
+export LANG=en_US.UTF-8  
+
 bitbake core-image-minimal  
 ```
 ### Build Multimedia Image (with Qt6)
