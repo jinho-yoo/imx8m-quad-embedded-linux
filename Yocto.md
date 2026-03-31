@@ -66,6 +66,10 @@ Now, use bitbake to compile the entire distribution, including the toolchain, ke
 
 ### Build Minimal Console Image
 ```
+sudo apt-get update
+sudo apt-get install locales
+sudo locale-gen en_US.UTF-8
+
 bitbake core-image-minimal  
 ```
 ### Build Multimedia Image (with Qt6)
