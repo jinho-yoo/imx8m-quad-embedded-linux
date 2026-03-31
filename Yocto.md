@@ -31,7 +31,10 @@ mkdir imx8m-yocto-bsp
 cd imx8m-yocto-bsp  
   
 \# Initialize for Mickledore release  
-repo init -u \[https://github.com/nxp-imx/imx-manifest\](https://github.com/nxp-imx/imx-manifest) -b imx-linux-mickledore -m imx-6.1.36-2.1.0.xml  
+repo init -u \https://github.com/nxp-imx/imx-manifest\https://github.com/nxp-imx/imx-manifest -b imx-linux-mickledore -m imx-6.1.36-2.1.0.xml
+or
+repo init -u https://github.com/nxp-imx/imx-manifest -b imx-linux-mickledore -m imx-6.1.36-2.1.0.xml  
+
 repo sync  
 ```
 ## 3\. Environment Setup
