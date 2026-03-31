@@ -41,7 +41,7 @@ repo sync
 
 Configure the build environment for the specific machine (i.MX8M Quad EVK).
 
-### Setup Script
+### Setup Script(imx-setup-release.sh)  
 ```
 \# Accept EULA and set machine  
 DISTRO=fsl-imx-xwayland MACHINE=imx8mqevk source imx-setup-release.sh -b build  
