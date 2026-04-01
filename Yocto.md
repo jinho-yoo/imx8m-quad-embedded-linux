@@ -82,9 +82,11 @@ source setup-environment **build**
 ```
 ### Build Multimedia Image (with Qt6)
 ```
+<pre>
 bitbake imx-image-multimedia  
 위 명령이 안된다면 아래를 수행
-source setup-environment <b>강조하고 싶은 텍스트</b>  
+source setup-environment <b>build</b>
+</pre>
 ```
 ## 6\. Deployment
 
