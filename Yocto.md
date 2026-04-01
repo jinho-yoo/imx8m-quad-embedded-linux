@@ -77,12 +77,14 @@ export LANG=en_US.UTF-8
 
 bitbake core-image-minimal
 위 명령이 안된다면 아래를 수행
-source setup-environment build
+source setup-environment __build__
 
 ```
 ### Build Multimedia Image (with Qt6)
 ```
 bitbake imx-image-multimedia  
+위 명령이 안된다면 아래를 수행
+source setup-environment __build__  
 ```
 ## 6\. Deployment
 
