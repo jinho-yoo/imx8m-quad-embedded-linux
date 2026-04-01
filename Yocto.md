@@ -84,7 +84,7 @@ source setup-environment **build**
 ```
 bitbake imx-image-multimedia  
 위 명령이 안된다면 아래를 수행
-source setup-environment **build**  
+source setup-environment <b>강조하고 싶은 텍스트</b>  
 ```
 ## 6\. Deployment
 
