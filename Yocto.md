@@ -66,8 +66,8 @@ ACCEPT\_FSL\_EULA = "1"
 
 Now, use bitbake to compile the entire distribution, including the toolchain, kernel, U-Boot, and RootFS.
 
-### Build Minimal Console Image
-```
+### Build Minimal Console Image  
+<pre>
 sudo apt-get update
 sudo apt-get install locales
 sudo locale-gen en_US.UTF-8
@@ -77,10 +77,9 @@ export LANG=en_US.UTF-8
 
 bitbake core-image-minimal
 위 명령이 안된다면 아래를 수행
-source setup-environment **build**
-
-```
-### Build Multimedia Image (with Qt6)
+source setup-environment <b>build</b>
+</pre>
+### Build Multimedia Image (with Qt6)  
 
 <pre>
 bitbake imx-image-multimedia  
