@@ -66,6 +66,37 @@ ACCEPT\_FSL\_EULA = "1"
 
 Now, use bitbake to compile the entire distribution, including the toolchain, kernel, U-Boot, and RootFS.
 
+### 8GB Memory, 6GB GPU  
+<pre>
+1.Windows 탐색기 주소창에 %USERPROFILE% 입력 후 엔터.  
+2.해당 폴더에 .wslconfig 파일을 만들고(메모장 활용) 아래 내용을 넣으세요.  
+  
+[wsl2]  
+memory=6GB      # 실제 RAM 8GB 중 6GB를 WSL에 할당  
+swap=16GB       # 부족한 RAM을 대신할 가상 메모리를 16GB로 넉넉히 설정  
+localhostForwarding=true  
+</pre>  
+<pre>
+1. local.conf 최적화 설정 (가장 중요)  
+build/conf/local.conf 파일을 열어 기존 설정을 지우거나 주석 처리하고, 아래 내용을 맨 아래에 추가하세요. 핵심은 "한 번에 하나씩 천천히" 빌드하는 것입니다.  
+1. 병렬 빌드 개수 최소화 (8GB RAM 기준 최적화)  
+프로세스 개수를 2개로 제한하여 메모리 점유율을 낮춥니다.  
+BB_NUMBER_THREADS = "2"  
+PARALLEL_MAKE = "-j 2"  
+  
+2. 불필요한 이미지 용량 줄이기  
+빌드 도중 생성되는 중간 파일들을 즉시 삭제하여 디스크 및 메모리 부하를 줄입니다.  
+INHERIT += "rm_work"  
+  
+3. 호스트 glibc 버전 이슈 우회  
+8GB 환경에서 uninative 체크는 사치입니다. 일단 비활성화해서 부하를 줄입니다.  
+INHERIT:remove = "uninative"  
+  
+4. 압축 방식 변경 (메모리 소모 절감)  
+이미지를 압축할 때 메모리를 많이 쓰는 방식을 피합니다.  
+XZ_THREADS = "1"  
+</pre>
+
 ### Build Minimal Console Image  
 <pre>
 sudo apt-get update
