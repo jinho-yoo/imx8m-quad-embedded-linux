@@ -14,7 +14,7 @@ sudo apt install gawk wget git diffstat unzip texinfo gcc build-essential chrpat
 ### Install Google Repo Tool
 ```
 mkdir ~/bin  
-curl \https://storage.googleapis.com/git-repo-downloads/repo\https://storage.googleapis.com/git-repo-downloads/repo > ~/bin/repo  
+curl https://storage.googleapis.com/git-repo-downloads/repo > ~/bin/repo   
 chmod a+x ~/bin/repo  
 export PATH=${PATH}:~/bin  
 ```
