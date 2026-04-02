@@ -67,6 +67,7 @@ ACCEPT\_FSL\_EULA = "1"
 Now, use bitbake to compile the entire distribution, including the toolchain, kernel, U-Boot, and RootFS.
 
 ### 8GB Memory, 6GB GPU  
+[local system preparation]  
 <pre>
 1.Windows 탐색기 주소창에 %USERPROFILE% 입력 후 엔터.  
 2.해당 폴더에 .wslconfig 파일을 만들고(메모장 활용) 아래 내용을 넣으세요.  
