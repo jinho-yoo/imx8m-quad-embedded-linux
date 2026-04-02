@@ -53,11 +53,11 @@ DISTRO=fsl-imx-xwayland MACHINE=imx8mqevk source imx-setup-release.sh -b build
 
 Edit conf/local.conf to optimize the build process based on your CPU cores.
 ```
-BB\_NUMBER\_THREADS = "16"  
-PARALLEL\_MAKE = "-j 16"  
+BB_NUMBER_THREADS = "16"  
+PARALLEL_MAKE = "-j 16"  
   
-\# Accept Freescale EULA  
-ACCEPT\_FSL\_EULA = "1"  
+# Accept Freescale EULA  
+ACCEPT_FSL_EULA = "1"  
 ```
 ## 5\. Building the Image
 
