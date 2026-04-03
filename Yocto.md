@@ -127,6 +127,22 @@ tmp/deploy/images/imx8mqevk/
 -   imx-boot-imx8mqevk-sd.bin-flash\_evk: Combined bootloader image.
 -   core-image-minimal-imx8mqevk.wic.bz2: Full SD card image.
 
+### bitbake Key Artifacts:
+
+- bitbake core-image-minimal 결과물  
+가장 핵심적인 파일은 아래와 같습니다.  
+파일 이름: core-image-minimal-imx8mqevk.wic.bz2  
+설명: 부팅 가능한 전체 이미지 파일입니다. (압축된 형태)  
+기타 파일: * core-image-minimal-imx8mqevk.manifest (포함된 패키지 목록)  
+  
+core-image-minimal-imx8mqevk.testdata.json (테스트용 데이터)
+
+    
+- bitbake imx-image-multimedia 결과물  
+멀티미디어 전용 패키지들이 포함된 이미지입니다.  
+파일 이름: imx-image-multimedia-imx8mqevk.wic.bz2  
+설명: GPU/VPU 드라이버와 GStreamer 등이 포함된 대용량 이미지입니다.
+
 ### Writing to SD Card
 ```
 bzcat core-image-minimal-imx8mqevk.wic.bz2 | sudo dd of=/dev/sdX bs=1M conv=fsync  
