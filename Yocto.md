@@ -127,7 +127,8 @@ tmp/deploy/images/imx8mqevk/
 -   imx-boot-imx8mqevk-sd.bin-flash\_evk: Combined bootloader image.
 -   core-image-minimal-imx8mqevk.wic.bz2: Full SD card image.
 
-### bitbake Key Artifacts:
+### bitbake Key Artifacts:  
+ scenario can be found in [scenario1.md](./scenarioes/scenario1.md).
 
 - bitbake core-image-minimal 결과물  
 가장 핵심적인 파일은 아래와 같습니다.  
