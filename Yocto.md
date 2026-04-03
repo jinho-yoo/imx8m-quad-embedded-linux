@@ -143,7 +143,7 @@ bzcat core-image-minimal-imx8mqevk.wic.bz2 | sudo dd of=/dev/sdX bs=1M conv=fsyn
 <hr style="border: double 5px #000;">
 
 
-## 💻 Building on WSL2 (Windows Subsystem for Linux)
+## 💻 Building on WSL2 (Windows Subsystem for Linux) same as above  
 
 If you are using Windows, WSL2 is a powerful environment for Yocto. However, you must follow these rules for a successful build:
 
