@@ -129,8 +129,7 @@ tmp/deploy/images/imx8mqevk/
 -   core-image-minimal-imx8mqevk.wic.bz2: Full SD card image.
 
 ### bitbake Key Artifacts:  
- scenario can be found in [scenario1.md]([./scenarioes/scenario1.md](https://github.com/jinho-yoo/scenarioes/blob/main/scenario1.md)).
- [핵심 로직 확인](https://github.com/jinho-yoo/scenarioes/blob/main/scenario1.md)
+ scenario can be found in [scenario1.md](https://github.com/jinho-yoo/scenarioes/blob/main/scenario1.md)
 
 - bitbake core-image-minimal 결과물  
 가장 핵심적인 파일은 아래와 같습니다.  
