@@ -1,18 +1,18 @@
-# 📂 i.MX8M-Quad-Embedded-Linux(Target Hardware: TechNexion PICO-IMX8M-core SOM with PICO-PI Baseboard)
+# 📂 i.MX8M-Embedded-Linux(Target Hardware: TechNexion PICO-IMX8M-core SOM with PICO-PI Baseboard)
   
 (https://developer.technexion.com/docs/system-on-modules/pico/pico-imx8m/development-kits/pico-pi-imx8m)
 
-**High-Performance Embedded Linux System on NXP i.MX8M Quad**  
-<img src="./images/topview.png" width="300px" alt="i.MX8M Quad Board">
-<img src="./images/bottom_view.png" width="300px" alt="i.MX8M Quad Board">
+**High-Performance Embedded Linux System on TechNexion PICO-IMX8M-core SOM**  
+<img src="./images/topview.png" width="300px" alt="i.MX8M TechNexion PICO-IMX8M-core SOM Board">
+<img src="./images/bottom_view.png" width="300px" alt="i.MX8M TechNexion PICO-IMX8M-core SOM Board">
 
-This project demonstrates the full-stack development of an embedded Linux system, ranging from low-level bootloader customization to a functional Root Filesystem, optimized for the **i.MX8M Quad** platform.
+This project demonstrates the full-stack development of an embedded Linux system, ranging from low-level bootloader customization to a functional Root Filesystem, optimized for the **TechNexion PICO-IMX8M-core SOM** platform.
 
 ## 💻 System Specification
 
 | **Feature** | **Details** |
 | --- | --- |
-| **Processor** | NXP i.MX8M Quad (4x Arm Cortex-A53 @ 1.5GHz + 1x Cortex-M4)  TechNexion PICO-IMX8M-core SOM with PICO-PI Baseboard |
+| **Processor** | i.MX8M(4x Arm Cortex-A53 @ 1.5GHz + 1x Cortex-M4)  TechNexion PICO-IMX8M-core SOM with PICO-PI Baseboard |
 | **Memory** | 2GB LPDDR4 RAM |
 | **Storage** | 16GB eMMC / MicroSD Slot |
 | **GPU/VPU** | Vivante GC7000Lite / 4K H.265 Decoding |
