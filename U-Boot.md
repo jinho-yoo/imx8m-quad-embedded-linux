@@ -15,6 +15,7 @@ The i.MX8M Quad (Cortex-A53) requires a complex boot sequence compared to older 
 4.  **U-Boot Proper:** Full bootloader with network and shell support.
 
 ### Image Structure Diagram
+u_boot_init_sequence.jpg
 
 ## 🔄 Boot Flow
 
