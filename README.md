@@ -12,7 +12,7 @@ This project demonstrates the full-stack development of an embedded Linux system
 
 | **Feature** | **Details** |
 | --- | --- |
-| **Processor** | NXP i.MX8M Quad (4x Arm Cortex-A53 @ 1.5GHz + 1x Cortex-M4) |
+| **Processor** | NXP i.MX8M Quad (4x Arm Cortex-A53 @ 1.5GHz + 1x Cortex-M4)  TechNexion PICO-IMX8M-core SOM with PICO-PI Baseboard |
 | **Memory** | 2GB LPDDR4 RAM |
 | **Storage** | 16GB eMMC / MicroSD Slot |
 | **GPU/VPU** | Vivante GC7000Lite / 4K H.265 Decoding |
