@@ -16,7 +16,7 @@ The i.MX8M Quad (Cortex-A53) requires a complex boot sequence compared to older 
 
 ### Image Structure Diagram
 
-<img src="./images/u_boot_init_sequence.jpg" width="600px" alt="i.MX8M Quad Board">
+<img src="./images/u_boot_init_sequence.jpg" width="900px" alt="i.MX8M Quad Board">
 
 ## 🔄 Boot Flow
 
