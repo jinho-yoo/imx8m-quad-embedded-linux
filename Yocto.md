@@ -1,4 +1,5 @@
 # 🛠 Yocto Project Build Guide for i.MX8M Quad
+(https://developer.technexion.com/docs/embedded-software/linux/yocto)
 
 This document provides a step-by-step guide to building a custom Embedded Linux distribution for the NXP i.MX8M Quad using the Yocto Project (Mickledore release).
 
