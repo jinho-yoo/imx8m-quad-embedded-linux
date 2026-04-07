@@ -2,8 +2,8 @@
 (https://developer.technexion.com/docs/system-on-modules/pico/pico-imx8m/development-kits/pico-pi-imx8m)
 
 **High-Performance Embedded Linux System on NXP i.MX8M Quad**
-<img src="./images/topview.jpg" width="600px" alt="i.MX8M Quad Board">
-<img src="./images/bottom_view.jpg" width="600px" alt="i.MX8M Quad Board">
+<img src="./images/topview.png" width="600px" alt="i.MX8M Quad Board">
+<img src="./images/bottom_view.png" width="600px" alt="i.MX8M Quad Board">
 
 This project demonstrates the full-stack development of an embedded Linux system, ranging from low-level bootloader customization to a functional Root Filesystem, optimized for the **i.MX8M Quad** platform.
 
