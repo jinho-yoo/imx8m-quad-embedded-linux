@@ -1,5 +1,5 @@
-# 📂 i.MX8M-Quad-Embedded-Linux
-(TechNexion PICO-IMX8M-core SOM with PICO-PI Baseboard)  
+# 📂 i.MX8M-Quad-Embedded-Linux(Target Hardware: TechNexion PICO-IMX8M-core SOM with PICO-PI Baseboard)
+  
 (https://developer.technexion.com/docs/system-on-modules/pico/pico-imx8m/development-kits/pico-pi-imx8m)
 
 **High-Performance Embedded Linux System on NXP i.MX8M Quad**
