@@ -1,7 +1,7 @@
-# 🛠 Yocto Project Build Guide for i.MX8M Quad
+# 🛠 Yocto Project Build Guide for TechNexion PICO-IMX8M-core SOM
 (https://developer.technexion.com/docs/embedded-software/linux/yocto)
 
-This document provides a step-by-step guide to building a custom Embedded Linux distribution for the NXP i.MX8M Quad using the Yocto Project (Mickledore release).
+This document provides a step-by-step guide to building a custom Embedded Linux distribution for the TechNexion PICO-IMX8M-core SOM using the Yocto Project (Mickledore release).
 
 ## 1\. Prerequisites
 
