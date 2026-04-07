@@ -1,4 +1,5 @@
-# 📂 i.MX8M-Quad-Embedded-Linux
+# 📂 i.MX8M-Quad-Embedded-Linux  
+(https://developer.technexion.com/docs/system-on-modules/pico/pico-imx8m/development-kits/pico-pi-imx8m)
 
 **High-Performance Embedded Linux System on NXP i.MX8M Quad**
 
