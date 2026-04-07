@@ -37,6 +37,7 @@ The boot process follows these stages:
 Based on the board\_imx8mq\_evk.c implementation:
 
 | **File Path** | **Description** |
+| :--- | :--- |
 | board/freescale/imx8mq\_evk/ | Board-specific initialization (C code) |
 | configs/imx8mq\_evk\_defconfig | Build configuration and enabled features |
 | arch/arm/dts/imx8mq-evk.dts | Hardware description for the bootloader stage |
