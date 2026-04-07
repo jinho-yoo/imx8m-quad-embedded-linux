@@ -2,7 +2,7 @@
   
 (https://developer.technexion.com/docs/system-on-modules/pico/pico-imx8m/development-kits/pico-pi-imx8m)
 
-**High-Performance Embedded Linux System on NXP i.MX8M Quad**
+**High-Performance Embedded Linux System on NXP i.MX8M Quad**  
 <img src="./images/topview.png" width="300px" alt="i.MX8M Quad Board">
 <img src="./images/bottom_view.png" width="300px" alt="i.MX8M Quad Board">
 
