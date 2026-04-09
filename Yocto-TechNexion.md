@@ -3,8 +3,8 @@
 
 This document provides a step-by-step guide to building a custom Embedded Linux distribution for the TechNexion PICO-IMX8M-core SOM using the Yocto Project (Mickledore release).
 
-## 0\. Docker, Ubuntu16.04
-
+## 0\. Docker, Ubuntu16.04  
+(https://www.digitalocean.com/community/tutorials/how-to-install-and-use-docker-on-ubuntu-16-04)  
 Before starting, ensure your host machine (Ubuntu 20.04/22.04 recommended) has the necessary build dependencies installed.
 
 ## 1\. Prerequisites
