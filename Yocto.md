@@ -22,10 +22,9 @@ export PATH=${PATH}:~/bin
 ## 2\. Fetching Source Code
 
 We use the repo tool to manage multiple layers including meta-freescale.
-(https://github.com/TechNexion/tn-imx-yocto-manifest)
 
 ### Initialize Repository
-(https://github.com/TechNexion/tn-imx-yocto-manifest)  
+  
 ```
 mkdir imx8m-yocto-bsp  
 cd imx8m-yocto-bsp  
