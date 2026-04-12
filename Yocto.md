@@ -40,7 +40,7 @@ repo sync
 ```
 ## 3\. Environment Setup
 
-Configure the build environment for the specific machine (i.MX8M Quad EVK).
+Configure the build environment for the specific machine (NXP MCIMX8M-EVKB).
 
 ### Setup Script(imx-setup-release.sh)  
 ```
