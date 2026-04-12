@@ -1,12 +1,12 @@
-# 📂 i.MX8M-Embedded-Linux(Target Hardware: TechNexion PICO-IMX8M-core SOM with PICO-PI Baseboard)
+# 📂 i.MX8M-Embedded-Linux(Target Hardware: NXP MCIMX8M-EVKB)
   
 (https://developer.technexion.com/docs/system-on-modules/pico/pico-imx8m/development-kits/pico-pi-imx8m)
 
-**High-Performance Embedded Linux System on TechNexion PICO-IMX8M-core SOM**  
-<img src="./images/topview.png" width="300px" alt="i.MX8M TechNexion PICO-IMX8M-core SOM Board">
-<img src="./images/bottom_view.png" width="300px" alt="i.MX8M TechNexion PICO-IMX8M-core SOM Board">
+**High-Performance Embedded Linux System on NXP MCIMX8M-EVKB**  
+<img src="./images/topview.png" width="300px" alt="i.MX8M NXP MCIMX8M-EVKB">
+<img src="./images/bottom_view.png" width="300px" alt="i.MX8M NXP MCIMX8M-EVKB">
 
-This project demonstrates the full-stack development of an embedded Linux system, ranging from low-level bootloader customization to a functional Root Filesystem, optimized for the **TechNexion PICO-IMX8M-core SOM** platform.
+This project demonstrates the full-stack development of an embedded Linux system, ranging from low-level bootloader customization to a functional Root Filesystem, optimized for the **NXP MCIMX8M-EVKB** platform.
 
 ## 💻 System Specification
 
