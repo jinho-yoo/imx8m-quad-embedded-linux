@@ -3,7 +3,7 @@
 (https://developer.technexion.com/docs/system-on-modules/pico/pico-imx8m/development-kits/pico-pi-imx8m)
 
 **High-Performance Embedded Linux System on NXP MCIMX8M-EVKB**  
-<img src="./images/MCIMX8M-EVK_TOP.avif" width="600px" alt="i.MX8M NXP MCIMX8M-EVKB">  
+<img src="./images/MCIMX8M-EVK_TOP.avif" width="600px" alt="i.MX8M NXP MCIMX8M-EVKB">
 <img src="./images/MCIMX8M-EVK_BOTTOM.avif" width="600px" alt="i.MX8M NXP MCIMX8M-EVKB">
 
 
