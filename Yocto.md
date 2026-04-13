@@ -152,7 +152,7 @@ core-image-minimal-imx8mqevk.wic.zst (심볼릭 링크)
 The most critical file in the output list is the one with the .wic.zst extension. While your initial research suggested .wic.bz2, the current build environment utilizes the .zst (Zstandard) compression method.  
 core-image-minimal-imx8mqevk.wic.zst (Symbolic Link)  
 Actual File: core-image-minimal-imx8mqevk-20260402073451.rootfs.wic.zst  
-Description: This is an integrated system image ready to be flashed onto an SD card or eMMC. It contains the bootloader, kernel, and root filesystem (RootFS).
+Description: This is an integrated system image ready to be flashed onto an SD card or eMMC. It contains the bootloader, kernel, and root filesystem (RootFS).  
 Usage: After decompressing this file to obtain the .wic file, use the dd command or flashing tools like BalenaEtcher to write the image to your target hardware.  
 <!--    
 - bitbake imx-image-multimedia 결과물  
