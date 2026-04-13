@@ -173,6 +173,58 @@ bzcat core-image-minimal-imx8mqevk.wic.bz2 | sudo dd of=/dev/sdX bs=1M conv=fsyn
 -->
 # Image Fusing and Boot process
 
+i.MX8M EVB에 이미지를 플래싱하고 부팅하는 과정을 기술 문서 형식의 영어로 정리해 드립니다.
+
+---
+
+## 1. Prepare the Image File (Host PC)
+
+First, move the generated `.wic.zst` file from your WSL environment to your Windows local drive. You can access the WSL file system by typing `\\wsl$` in the Windows Explorer address bar.
+
+- Source Path: ~/imx8m-yocto-bsp/build/tmp/deploy/images/imx8mqevk/
+- Target File: core-image-minimal-imx8mqevk.wic.zst
+
+---
+
+## 2. Flash the SD Card
+
+Use a flashing utility like **balenaEtcher** to write the image to the MicroSD card.
+
+1. Insert SD Card: Connect the MicroSD card to your PC using a card reader.
+2. Select Image: In balenaEtcher, click 'Flash from file' and select the .wic.zst file. (Etcher handles the .zst decompression automatically).
+3. Select Target: Choose your SD card and click 'Flash!'.
+
+---
+
+## 3. Hardware Configuration (Boot Mode Switches)
+
+Set the **DIP switches** on the i.MX8M EVB to enable booting from the SD card.
+
+- Boot Mode Switch (SW801):SD Card Booting: 0011 (1:OFF, 2:OFF, 3:ON, 4:ON)
+- Power: Connect the USB Type-C power cable, but keep the power switch in the OFF position for now.
+
+---
+
+## 4. Connect Serial Console and Booting
+
+To monitor the boot process, you need to establish a serial console connection.
+
+1. Connect Debug Cable: Connect the Micro-USB cable from your PC to the Debug UART port on the EVB.
+2. Launch Terminal Emulator: Open Tera Term or PuTTY.Port: Select the corresponding COM port.Baud Rate: 115200 bps.
+3. Power ON: Flip the power switch on the board to ON.
+4. Verification: You should see the U-Boot logs followed by the Linux kernel boot sequence.Default Login: root (No password required).
+
+---
+
+### 💡 Troubleshooting
+
+- No Log Output: Ensure the cable is connected to the specific port labeled "Debug" and verify that your baud rate is set exactly to 115200.
+- Boot Loop or Hang: This can often be a power supply issue. Ensure you are using a 12V adapter if the Type-C power is insufficient.
+
+이제 이 가이드를 바탕으로 보드 부팅을 진행해 보세요! 성공적으로 로그인 프롬프트가 뜨면 본격적인 하드웨어 제어 테스트가 가능해집니다.
+
+
+<!--
 i.MX8M EVB에 빌드된 이미지를 플래싱하고 부팅하는 과정은 크게 **1) 이미지 준비, 2) SD 카드 플래싱, 3) 보드 스위치 설정, 4) 부팅 및 확인** 단계로 나뉩니다.
 
 ---
@@ -222,6 +274,7 @@ i.MX8M EVB가 SD 카드로부터 부팅될 수 있도록 보드 상의 **딥 스
 - 부팅 중 멈출 때: 전력 공급이 부족할 수 있습니다. 12V 전원 어댑터가 있다면 별도로 연결해 보세요.
 
 이제 보드에서 직접 리눅스 명령어를 입력하실 수 있습니다. 혹시 하드웨어 변형 보드 설계 전에 이 기본 보드에서 먼저 테스트해보고 싶은 특정 기능이 있으신가요?
+-->
 
 ## 🔍 Build Process Visualization
 
