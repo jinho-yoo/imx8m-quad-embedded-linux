@@ -170,6 +170,57 @@ Description: A high-capacity image that includes GPU/VPU drivers and the GStream
 ```
 bzcat core-image-minimal-imx8mqevk.wic.bz2 | sudo dd of=/dev/sdX bs=1M conv=fsync  
 ```
+
+i.MX8M EVB에 빌드된 이미지를 플래싱하고 부팅하는 과정은 크게 **1) 이미지 준비, 2) SD 카드 플래싱, 3) 보드 스위치 설정, 4) 부팅 및 확인** 단계로 나뉩니다.
+
+---
+
+## 1. 이미지 준비 (Host PC)
+
+WSL에서 생성된 `.wic.zst` 파일을 윈도우로 가져와야 합니다. 윈도우 탐색기를 열고 주소창에 `\\wsl$`를 입력하여 아래 경로의 파일을 윈도우 폴더(예: `D:\Temp`)로 복사하세요.
+
+- 경로: ~/imx8m-yocto-bsp/build/tmp/deploy/images/imx8mqevk/
+- 파일명: core-image-minimal-imx8mqevk.wic.zst
+
+---
+
+## 2. SD 카드 플래싱 (Flashing)
+
+가장 안전하고 간편한 방법은 **BalenaEtcher** 툴을 사용하는 것입니다.
+
+1. SD 카드 삽입: PC에 마이크로 SD 카드를 연결합니다.
+2. Etcher 실행: Flash from file을 클릭하고 복사해온 .wic.zst 파일을 선택합니다. (Etcher는 .zst 압축을 자동으로 해제하며 구워줍니다.)
+3. Target 선택: SD 카드를 선택한 후 Flash!를 누릅니다.
+
+---
+
+## 3. 하드웨어 설정 (SW Switch)
+
+i.MX8M EVB가 SD 카드로부터 부팅될 수 있도록 보드 상의 **딥 스위치(DIP Switch)**를 설정해야 합니다. 보드 모델마다 조금씩 다르지만, 일반적인 i.MX8M EVK의 설정은 다음과 같습니다.
+
+- Boot Mode 스위치 (SW801):SD Card 부팅: 0011 (1:OFF, 2:OFF, 3:ON, 4:ON)
+- 전원: USB Type-C 전원 케이블을 연결하되, 아직 스위치는 켜지 마세요.
+
+---
+
+## 4. 시리얼 콘솔 연결 및 부팅
+
+보드가 부팅되는 과정을 확인하려면 시리얼 디버그 포트를 연결해야 합니다.
+
+1. 디버그 케이블 연결: 보드의 Micro-USB(또는 전용 디버그 포트)와 PC를 연결합니다.
+2. 터미널 실행: Tera Term이나 PuTTY를 실행합니다.Port: 해당 COM 포트 선택Speed: 115200 bps
+3. 전원 ON: 보드의 전원 스위치를 켭니다.
+4. 확인: 터미널 창에 U-Boot 로그가 올라오고, 잠시 후 리눅스 커널이 부팅되며 로그인 프롬프트가 뜨면 성공입니다.ID: root (비밀번호 없음)
+
+---
+
+### 💡 문제 해결 팁 (Troubleshooting)
+
+- 로그가 전혀 안 뜰 때: 시리얼 케이블이 'Debug'라고 적힌 포트에 정확히 꽂혔는지, 보레이트(115200)가 맞는지 확인하세요.
+- 부팅 중 멈출 때: 전력 공급이 부족할 수 있습니다. 12V 전원 어댑터가 있다면 별도로 연결해 보세요.
+
+이제 보드에서 직접 리눅스 명령어를 입력하실 수 있습니다. 혹시 하드웨어 변형 보드 설계 전에 이 기본 보드에서 먼저 테스트해보고 싶은 특정 기능이 있으신가요?
+
 ## 🔍 Build Process Visualization
 
 ## 💡 Troubleshooting
