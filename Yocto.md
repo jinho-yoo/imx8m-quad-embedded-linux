@@ -181,7 +181,7 @@ bzcat core-image-minimal-imx8mqevk.wic.bz2 | sudo dd of=/dev/sdX bs=1M conv=fsyn
 <hr style="border: double 5px #000;">
 <hr style="border: double 5px #000;">
 
-
+<!--
 ## 💻 Building on WSL2 (Windows Subsystem for Linux) same as above  
 
 If you are using Windows, WSL2 is a powerful environment for Yocto. However, you must follow these rules for a successful build:
@@ -287,3 +287,4 @@ tmp/deploy/images/imx8mqevk/
 
 -   **Disk Space:** Ensure at least 150GB of free space. WSL2 virtual disks (.vhdx) expand automatically but don't shrink easily.
 -   **Build Speed:** Disable Windows Defender for the WSL folder to gain extra performance.
+-->
