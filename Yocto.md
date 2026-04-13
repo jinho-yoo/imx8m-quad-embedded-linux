@@ -221,7 +221,7 @@ To monitor the boot process, you need to establish a serial console connection.
 - No Log Output: Ensure the cable is connected to the specific port labeled "Debug" and verify that your baud rate is set exactly to 115200.
 - Boot Loop or Hang: This can often be a power supply issue. Ensure you are using a 12V adapter if the Type-C power is insufficient.
 
-이제 이 가이드를 바탕으로 보드 부팅을 진행해 보세요! 성공적으로 로그인 프롬프트가 뜨면 본격적인 하드웨어 제어 테스트가 가능해집니다.
+
 
 
 <!--
