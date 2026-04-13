@@ -165,11 +165,13 @@ This image includes a suite of packages optimized for multimedia performance.
 File Name: imx-image-multimedia-imx8mqevk.wic.zst (or .bz2 depending on configuration)  
 Description: A high-capacity image that includes GPU/VPU drivers and the GStreamer framework, designed for hardware-accelerated video and graphics processing.
 
-  
+<!--  
 ### Writing to SD Card
 ```
 bzcat core-image-minimal-imx8mqevk.wic.bz2 | sudo dd of=/dev/sdX bs=1M conv=fsync  
 ```
+-->
+# Image Fusing and Boot process
 
 i.MX8M EVB에 빌드된 이미지를 플래싱하고 부팅하는 과정은 크게 **1) 이미지 준비, 2) SD 카드 플래싱, 3) 보드 스위치 설정, 4) 부팅 및 확인** 단계로 나뉩니다.
 
