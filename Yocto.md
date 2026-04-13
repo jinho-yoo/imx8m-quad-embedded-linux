@@ -140,20 +140,32 @@ tmp/deploy/images/imx8mqevk/
   
  core-image-minimal-imx8mqevk.testdata.json (테스트용 데이터)
 -->
-  
+<!--  
 - 가장 핵심적인 파일: 부팅 이미지  
 리스트에서 가장 중요한 파일은 .wic.zst 확장자를 가진 파일입니다. 조사하신 .wic.bz2 대신 현재 빌드에서는 .zst 압축 방식을 사용하고 있습니다.  
 core-image-minimal-imx8mqevk.wic.zst (심볼릭 링크)  
 실제 파일: core-image-minimal-imx8mqevk-20260402073451.rootfs.wic.zst  
 설명: SD 카드나 eMMC에 바로 구울 수 있는 통합 이미지입니다. 부트로더, 커널, 루트 파일시스템이 모두 포함되어 있습니다.  
-사용법: 이 파일의 압축을 풀면 .wic 파일이 나오며, 이를 dd 명령어나 Etcher 툴을 사용해 보드에 플래싱합니다.  
-
-    
+사용법: 이 파일의 압축을 풀면 .wic 파일이 나오며, 이를 dd 명령어나 Etcher 툴을 사용해 보드에 플래싱합니다.
+-->
+- bitbake core-image-minimal(Key Output File: Boot Image)  
+The most critical file in the output list is the one with the .wic.zst extension. While your initial research suggested .wic.bz2, the current build environment utilizes the .zst (Zstandard) compression method.  
+core-image-minimal-imx8mqevk.wic.zst (Symbolic Link)  
+Actual File: core-image-minimal-imx8mqevk-20260402073451.rootfs.wic.zst  
+Description: This is an integrated system image ready to be flashed onto an SD card or eMMC. It contains the bootloader, kernel, and root filesystem (RootFS).
+Usage: After decompressing this file to obtain the .wic file, use the dd command or flashing tools like BalenaEtcher to write the image to your target hardware.  
+<!--    
 - bitbake imx-image-multimedia 결과물  
 멀티미디어 전용 패키지들이 포함된 이미지입니다.  
 파일 이름: imx-image-multimedia-imx8mqevk.wic.bz2  
 설명: GPU/VPU 드라이버와 GStreamer 등이 포함된 대용량 이미지입니다.
+-->
+- bitbake imx-image-multimedia Output
+This image includes a suite of packages optimized for multimedia performance.  
+File Name: imx-image-multimedia-imx8mqevk.wic.zst (or .bz2 depending on configuration)  
+Description: A high-capacity image that includes GPU/VPU drivers and the GStreamer framework, designed for hardware-accelerated video and graphics processing.
 
+  
 ### Writing to SD Card
 ```
 bzcat core-image-minimal-imx8mqevk.wic.bz2 | sudo dd of=/dev/sdX bs=1M conv=fsync  
