@@ -1,6 +1,8 @@
 # 🛠 Yocto Project Build Guide for NXP MCIMX8M-EVKB
 
 This document provides a step-by-step guide to building a custom Embedded Linux distribution for the NXP i.MX8M Quad using the Yocto Project (Mickledore release).
+## Out of box
+https://www.nxp.com/document/guide/getting-started-with-the-i-mx-8m-mini-evkb:GS-iMX-8M-Mini-EVK  
 
 ## 1\. Prerequisites
 
