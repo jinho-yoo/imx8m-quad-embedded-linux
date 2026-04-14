@@ -219,6 +219,35 @@ https://www.silabs.com/software-and-tools/usb-to-uart-bridge-vcp-drivers?tab=ove
 <img src="./images/boot_screen.PNG" width="600px" alt="NXP i.MX8M Boot Screen">
 <img src="./images/portinfo.PNG" width="300px" alt="NXP i.MX8M Boot Screen">
 
+## 5. Get the sources and setting "not removed"
+
+- 개별 핵심 패키지 소스 강제 복구
+
+가장 중요한 3대 요소(부트로더, 커널, 펌웨어)의 소스를 아래 명령어로 직접 풀어주세요.
+
+Bash```
+bitbake -c unpack u-boot-imx linux-imx imx-atf
+
+```
+
+- u-boot-imx: 부트로더 소스
+- linux-imx: 리눅스 커널 소스
+- imx-atf: ARM Trusted Firmware 소스
+
+### 2. 복구 확인 및 이동
+
+위 명령이 끝난 후 다시 확인해 보시면, 아까는 없던 `git` 폴더가 생성되어 있을 것입니다.
+
+Bash```
+# U-Boot 소스로 이동
+cd ~/imx8m-yocto-bsp/build/tmp/work/imx8mqevk-poky-linux/u-boot-imx/2023.04-r0/git
+ls -F
+
+```
+- rm_work 일시 중단하기
+
+앞으로 커널(Kernel) 소스도 공부하실 예정이라면, `conf/local.conf`에서 `INHERIT += "rm_work"` 라인 앞에 **`#`**을 붙여 주석 처리해 두세요. 그래야 빌드가 끝나도 소스가 지워지지 않아 언제든 공부하실 수 있습니다.
+
 ---
 
 ### 💡 Troubleshooting
