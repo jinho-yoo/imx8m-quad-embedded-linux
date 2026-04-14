@@ -1,7 +1,7 @@
 # 🛠 Yocto Project Build Guide for NXP MCIMX8M-EVKB
 
 This document provides a step-by-step guide to building a custom Embedded Linux distribution for the NXP i.MX8M Quad using the Yocto Project (Mickledore release).
-## Out of box
+## 0.1 Out of box
 https://www.nxp.com/document/guide/getting-started-with-the-i-mx-8m-mini-evkb:GS-iMX-8M-Mini-EVK  
 
 ## 1\. Prerequisites
@@ -215,6 +215,9 @@ To monitor the boot process, you need to establish a serial console connection.
 2. Launch Terminal Emulator: Open Tera Term or PuTTY.Port: Select the corresponding COM port.Baud Rate: 115200 bps.
 3. Power ON: Flip the power switch on the board to ON.
 4. Verification: You should see the U-Boot logs followed by the Linux kernel boot sequence.Default Login: root (No password required).
+
+- install VCP Driver
+https://www.silabs.com/software-and-tools/usb-to-uart-bridge-vcp-drivers?tab=overview  
 
 ---
 
