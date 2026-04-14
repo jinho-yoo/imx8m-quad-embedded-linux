@@ -217,6 +217,7 @@ To monitor the boot process, you need to establish a serial console connection.
 - install VCP Driver
 https://www.silabs.com/software-and-tools/usb-to-uart-bridge-vcp-drivers?tab=overview  
 <img src="./images/boot_screen.PNG" width="600px" alt="NXP i.MX8M Boot Screen">
+<img src="./images/portinfo.PNG" width="300px" alt="NXP i.MX8M Boot Screen">
 
 ---
 
