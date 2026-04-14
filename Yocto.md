@@ -175,8 +175,6 @@ bzcat core-image-minimal-imx8mqevk.wic.bz2 | sudo dd of=/dev/sdX bs=1M conv=fsyn
 -->
 # Image Fusing and Boot process
 
-i.MX8M EVB에 이미지를 플래싱하고 부팅하는 과정을 기술 문서 형식의 영어로 정리해 드립니다.
-
 ---
 
 ## 1. Prepare the Image File (Host PC)
