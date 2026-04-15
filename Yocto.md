@@ -215,8 +215,8 @@ To monitor the boot process, you need to establish a serial console connection.
 4. Verification: You should see the U-Boot logs followed by the Linux kernel boot sequence.Default Login: root (No password required).
 
 - install VCP Driver
-https://www.silabs.com/software-and-tools/usb-to-uart-bridge-vcp-drivers?tab=overview
-<a href="https://github.com/jinho-yoo/imx8m-quad-embedded-linux/tree/main/files/CP210x_Universal_Windows_Driver.zip" download>download</a>
+<a href="https://github.com/jinho-yoo/imx8m-quad-embedded-linux/tree/main/files/CP210x_Universal_Windows_Driver.zip" download>(download)</a>https://www.silabs.com/software-and-tools/usb-to-uart-bridge-vcp-drivers?tab=overview
+
 
     
 <img src="./images/boot_screen.PNG" width="600px" alt="NXP i.MX8M Boot Screen">
