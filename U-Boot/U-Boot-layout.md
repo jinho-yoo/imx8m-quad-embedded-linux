@@ -77,3 +77,29 @@ graph TD
     UBOOT --> DTB
 ```
 
+```mermaid
+%%{init: {'theme': 'base', 'themeVariables': { 'fontSize': '16px'}, 'flowchart': {'useMaxWidth': true, 'htmlLabels': true}} }%%
+graph TD
+    subgraph Flash_Binary [flash.bin Layout]
+        direction TB
+        
+        Header["<b>0x0: IVT & Boot Data</b><br/>(ROM Code Entry Point)"]
+        SPL["<b>U-Boot SPL</b><br/>(DDR Initialization)"]
+        DDR_FW["<b>DDR PHY Firmware</b><br/>(LPDDR4/DDR4 Training Blobs)"]
+        
+        subgraph FIT_Container [FIT Image Container]
+            direction TB
+            ATF["<b>ATF (bl31.bin)</b><br/>(EL3 / Runtime Services)"]
+            UBOOT["<b>U-Boot Proper (u-boot.bin)</b><br/>(Bootloader CLI)"]
+            DTB["<b>Device Tree (DTB)</b><br/>(Hardware Description)"]
+            TEE["<b>OP-TEE (Optional)</b><br/>(Secure OS)"]
+        end
+    end
+
+    Header --> SPL
+    SPL --> DDR_FW
+    DDR_FW --> ATF
+    ATF --> UBOOT
+    UBOOT --> DTB
+```
+
