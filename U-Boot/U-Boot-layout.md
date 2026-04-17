@@ -39,3 +39,13 @@ You can try these English prompts to deep-dive into the source code:
 
 By uploading the **DTS files** and the **defconfig**, NotebookLM will be able to tell you exactly how your specific board maps these components!
 
+mermaid
+classDiagram
+    class Animal {
+        +String name
+        +isMammal()
+    }
+    class Dog {
+        +bark()
+    }
+    Animal <|-- Dog
