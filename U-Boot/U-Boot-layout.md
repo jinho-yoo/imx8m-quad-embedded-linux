@@ -51,9 +51,8 @@ classDiagram
     Animal <|-- Dog
 --->
 
-%%{init: {'flowchart': {'useMaxWidth': false}}}%%
-```mermaid
 
+```mermaid
 graph TD
     subgraph Flash_Binary [flash.bin Layout]
         direction TB
