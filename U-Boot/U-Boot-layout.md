@@ -50,6 +50,8 @@ classDiagram
     }
     Animal <|-- Dog
 --->
+
+<div style="width: 300px;">
 ```mermaid
 graph TD
     subgraph Flash_Binary [flash.bin Layout]
@@ -73,4 +75,5 @@ graph TD
     DDR_FW --> ATF
     ATF --> UBOOT
     UBOOT --> DTB
-
+```
+</div>
