@@ -38,7 +38,7 @@ You can try these English prompts to deep-dive into the source code:
 3. "Explain how the bl31.bin (ATF) and u-boot.bin are bundled together during the final image creation process."
 
 By uploading the **DTS files** and the **defconfig**, NotebookLM will be able to tell you exactly how your specific board maps these components!
-
+<!---
 ```mermaid
 classDiagram
     class Animal {
@@ -49,6 +49,7 @@ classDiagram
         +bark()
     }
     Animal <|-- Dog
+--->
 ```mermaid
 graph TD
     subgraph Flash_Binary [flash.bin Layout]
