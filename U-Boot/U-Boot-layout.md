@@ -100,7 +100,10 @@ This is the "brain" of the SoC initialization.
 This handles how the CPU core interacts with the system at a very low level.
 
 - Role: Manages the ARMv8 core-specific settings and memory mapping.
-- Key Contents:Low-Level Init: The very first assembly code that runs upon power-up (lowlevel_init.S).Memory Map: Defining the MMU (Memory Management Unit) tables and where different segments of memory are located.Cache Control: Initializing Instruction and Data caches.
+- Key Contents:
+  - Low-Level Init: The very first assembly code that runs upon power-up (lowlevel_init.S).
+  - Memory Map: Defining the MMU (Memory Management Unit) tables and where different segments of memory are located.
+  - Cache Control: Initializing Instruction and Data caches.
 
 ---
 
