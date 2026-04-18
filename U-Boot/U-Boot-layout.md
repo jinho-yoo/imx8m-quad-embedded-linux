@@ -90,10 +90,10 @@ This is the "brain" of the SoC initialization.
 
 - Role: Handles high-level SoC hardware initialization.
 - Key Contents:
-  -- Clock Management: Setting up PLLs and clock trees (clock.c).
-  -- Pinmux Base: Defining the foundation for I/O multiplexing.
-  -- Power Management: Initializing voltage rails and power states.
-  -- Boot Image Preparation: Logic for identifying SoC variants and setting up the boot sequence.
+  - Clock Management: Setting up PLLs and clock trees (clock.c).
+  - Pinmux Base: Defining the foundation for I/O multiplexing.
+  - Power Management: Initializing voltage rails and power states.
+  - Boot Image Preparation: Logic for identifying SoC variants and setting up the boot sequence.
 
 ### arch/arm/cpu/armv8/imx8m/ (Architecture Level Logic)
 
