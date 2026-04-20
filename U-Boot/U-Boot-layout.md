@@ -52,7 +52,7 @@ classDiagram
 --->
 
 
-<div style="width: 50%;">
+<div style="width: 30%;">
 
     
 ```mermaid
