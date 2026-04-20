@@ -110,14 +110,8 @@ As mentioned in the "Layer B" of your previous notes, **Binman** is the critical
 
 ---
 
-## 3. Advanced Prompts for NotebookLM Analysis
 
-To bridge the gap between the code you have and the `flash.bin` logic, try these specific prompts:
-
-- Prompt 1 (DDR to FIT Transition):"Analyze how the initialization code in arch/arm/mach-imx/imx8m/ prepares the system memory, and then explain the mechanism by which the SPL locates the FIT Image defined in the Binman configuration."
-- Prompt 2 (Division of Labor):"What is the functional difference between the low-level code in arch/arm/cpu/armv8/imx8m/ and the SoC-level code in arch/arm/mach-imx/imx8m/? Trace the execution flow from the first instruction to the point where flash.bin starts loading the ATF."
-
-## 4. Analysis of imx8mq-u-boot.dtsi, imx8mq-evk-u-boot.dtsi on arch/arm/dts/ of uboot
+## 3. Analysis of imx8mq-u-boot.dtsi, imx8mq-evk-u-boot.dtsi on arch/arm/dts/ of uboot
 
 ```mermaid
 graph TD
@@ -149,6 +143,13 @@ graph TD
     style AIPS3 fill:#dfd,stroke:#333,stroke-dasharray: 5 5
     style AIPS4 fill:#dfd,stroke:#333,stroke-dasharray: 5 5
 ```
+---
+## 4. Advanced Prompts for NotebookLM Analysis
+
+To bridge the gap between the code you have and the `flash.bin` logic, try these specific prompts:
+
+- Prompt 1 (DDR to FIT Transition):"Analyze how the initialization code in arch/arm/mach-imx/imx8m/ prepares the system memory, and then explain the mechanism by which the SPL locates the FIT Image defined in the Binman configuration."
+- Prompt 2 (Division of Labor):"What is the functional difference between the low-level code in arch/arm/cpu/armv8/imx8m/ and the SoC-level code in arch/arm/mach-imx/imx8m/? Trace the execution flow from the first instruction to the point where flash.bin starts loading the ATF."
 
 ---
 
