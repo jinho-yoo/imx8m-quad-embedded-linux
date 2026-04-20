@@ -116,7 +116,7 @@ As mentioned in the "Layer B" of your previous notes, **Binman** is the critical
 <div style="width: 80%; margin: auto;">
 
 ```mermaid
-%%{init: { 'theme': 'default', 'themeVariables': { 'fontSize': '16px', 'fontFamily': 'arial' }, 'config': { 'rankSpacing': 40 } } }%%
+%%{init: { 'theme': 'default', 'themeVariables': { 'fontSize': '18px', 'fontFamily': 'arial' }, 'config': { 'rankSpacing': 40 } } }%%
 graph TD
     Root["/ (Root Node)"] --- SoC["&soc (i.MX8MQ SoC)"]
     
