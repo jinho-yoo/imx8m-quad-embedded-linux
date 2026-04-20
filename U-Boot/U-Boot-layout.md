@@ -113,7 +113,10 @@ As mentioned in the "Layer B" of your previous notes, **Binman** is the critical
 
 ## 3. Analysis of imx8mq-u-boot.dtsi, imx8mq-evk-u-boot.dtsi on arch/arm/dts/ of uboot
 
+<div style="width: 80%; margin: auto;">
+
 ```mermaid
+%%{init: { 'theme': 'default', 'themeVariables': { 'fontSize': '16px', 'fontFamily': 'arial' }, 'config': { 'rankSpacing': 40 } } }%%
 graph TD
     Root["/ (Root Node)"] --- SoC["&soc (i.MX8MQ SoC)"]
     
@@ -143,6 +146,8 @@ graph TD
     style AIPS3 fill:#dfd,stroke:#333,stroke-dasharray: 5 5
     style AIPS4 fill:#dfd,stroke:#333,stroke-dasharray: 5 5
 ```
+
+</div>
 
 ---
 ## 4. Advanced Prompts for NotebookLM Analysis
