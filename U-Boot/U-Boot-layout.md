@@ -143,6 +143,7 @@ graph TD
     style AIPS3 fill:#dfd,stroke:#333,stroke-dasharray: 5 5
     style AIPS4 fill:#dfd,stroke:#333,stroke-dasharray: 5 5
 ```
+
 ---
 ## 4. Advanced Prompts for NotebookLM Analysis
 
