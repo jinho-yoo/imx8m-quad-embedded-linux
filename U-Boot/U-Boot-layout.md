@@ -56,7 +56,7 @@ classDiagram
 
     
 ```mermaid
-%%{init: {'theme': 'base', 'themeVariables': { 'fontSize': '12px'}}}%%
+%%{init: {'theme': 'base', 'themeVariables': { 'fontSize': '10px'}}}%%
 graph TD
     subgraph Flash_Binary [flash.bin Layout]
         direction TB
