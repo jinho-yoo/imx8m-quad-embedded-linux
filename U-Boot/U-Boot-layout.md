@@ -88,7 +88,7 @@ When you analyze these files in **NotebookLM**, it’s helpful to understand whi
 | --- | --- | --- |
 | arch/arm/cpu/armv8/imx8m/ | u-boot-spl.bin (Partial) | Low-level Core Init: Handles ARMv8 specific logic like MMU and Caches. |
 | arch/arm/mach-imx/imx8m/ | u-boot-spl.bin (Main) | SoC Level Init: The "brain" that initializes clocks, power, and DDR. |
-| arch/arm/dts/ (*-u-boot.dtsi) | Binman Config | The Blueprint: Defines the offsets and layout of the entire image. |
+| arch/arm/dts/ (imx8mq-evk-u-boot.dtsi) | Binman Config | The Blueprint: Defines the offsets and layout of the entire image. |
 | (External Binaries) | bl31.bin (ATF) | Payload: Inserted into the FIT Container by Binman. |
 
 ---
@@ -97,7 +97,7 @@ When you analyze these files in **NotebookLM**, it’s helpful to understand whi
 
 As mentioned in the "Layer B" of your previous notes, **Binman** is the critical link. It doesn't write code; it arranges it.
 
-- Where to look: Upload arch/arm/dts/imx8m-*-u-boot.dtsi to NotebookLM.
+- Where to look: Upload arch/arm/dts/imx8mq-evk-u-boot.dtsi to NotebookLM.
 - What to find: Look for the binman { ... }; node. You will see sections for u-boot-spl, atf, and u-boot-proper.
 - The Offsets: You will notice entries like offset = <0x0>;. This tells the build system exactly where each "ingredient" should be placed inside the 32MB (or smaller) flash memory.
 
