@@ -110,17 +110,7 @@ To bridge the gap between the code you have and the `flash.bin` logic, try these
 - Prompt 1 (DDR to FIT Transition):"Analyze how the initialization code in arch/arm/mach-imx/imx8m/ prepares the system memory, and then explain the mechanism by which the SPL locates the FIT Image defined in the Binman configuration."
 - Prompt 2 (Division of Labor):"What is the functional difference between the low-level code in arch/arm/cpu/armv8/imx8m/ and the SoC-level code in arch/arm/mach-imx/imx8m/? Trace the execution flow from the first instruction to the point where flash.bin starts loading the ATF."
 
----
-
-## Summary
-
-By combining the information from both conversations, we can conclude:
-
-1. The Code (The Ingredients): Found in mach-imx and cpu/armv8. This is what the system does.
-2. The Layout (The Recipe): Found in the binman node of the dtsi files. This is where the pieces are stored.
-3. The Result: The Makefile coordinates these two to "bake" the final flash.bin.
-
-Understanding this distinction allows you to identify whether a boot failure is a **functional bug** (code) or a **packaging error** (Binman/offsets).
+## 4. Analysis of imx8mq-u-boot.dtsi, imx8mq-evk-u-boot.dtsi
 
 ```mermaid
 graph TD
@@ -152,3 +142,15 @@ graph TD
     style AIPS3 fill:#dfd,stroke:#333,stroke-dasharray: 5 5
     style AIPS4 fill:#dfd,stroke:#333,stroke-dasharray: 5 5
 ```
+
+---
+
+## Summary
+
+By combining the information from both conversations, we can conclude:
+
+1. The Code (The Ingredients): Found in mach-imx and cpu/armv8. This is what the system does.
+2. The Layout (The Recipe): Found in the binman node of the dtsi files. This is where the pieces are stored.
+3. The Result: The Makefile coordinates these two to "bake" the final flash.bin.
+
+Understanding this distinction allows you to identify whether a boot failure is a **functional bug** (code) or a **packaging error** (Binman/offsets).
