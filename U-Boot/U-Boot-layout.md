@@ -110,7 +110,7 @@ To bridge the gap between the code you have and the `flash.bin` logic, try these
 - Prompt 1 (DDR to FIT Transition):"Analyze how the initialization code in arch/arm/mach-imx/imx8m/ prepares the system memory, and then explain the mechanism by which the SPL locates the FIT Image defined in the Binman configuration."
 - Prompt 2 (Division of Labor):"What is the functional difference between the low-level code in arch/arm/cpu/armv8/imx8m/ and the SoC-level code in arch/arm/mach-imx/imx8m/? Trace the execution flow from the first instruction to the point where flash.bin starts loading the ATF."
 
-## 4. Analysis of imx8mq-u-boot.dtsi, imx8mq-evk-u-boot.dtsi
+## 4. Analysis of imx8mq-u-boot.dtsi, imx8mq-evk-u-boot.dtsi on arch/arm/dts/ of uboot
 
 ```mermaid
 graph TD
