@@ -121,3 +121,34 @@ By combining the information from both conversations, we can conclude:
 3. The Result: The Makefile coordinates these two to "bake" the final flash.bin.
 
 Understanding this distinction allows you to identify whether a boot failure is a **functional bug** (code) or a **packaging error** (Binman/offsets).
+
+```mermaid
+graph TD
+    Root["/ (Root Node)"] --- SoC["&soc (i.MX8MQ SoC)"]
+    
+    %% SoC 아래의 버스 구조
+    SoC --- AIPS1["&aips1 (Peripheral Bridge 1)"]
+    SoC --- AIPS2["&aips2 (Peripheral Bridge 2)"]
+    SoC --- AIPS3["&aips3 (Peripheral Bridge 3)"]
+    SoC --- AIPS4["&aips4 (Peripheral Bridge 4)"]
+    
+    %% AIPS1에 연결된 장치 (UART 등)
+    AIPS1 --- UART1["&uart1 (Debug Console)"]
+    AIPS1 --- IOMUXC["&iomuxc (Pin Controller)"]
+    
+    %% AIPS2에 연결된 장치 (Storage)
+    AIPS2 --- USDHC1["&usdhc1 (eMMC)"]
+    AIPS2 --- USDHC2["&usdhc2 (SD Card)"]
+    
+    %% AIPS3에 연결된 장치 (Network/Display)
+    AIPS3 --- FEC1["&fec1 (Ethernet)"]
+    AIPS3 --- DCSS["&dcss (Display Controller)"]
+
+    %% 스타일링 (SPL 활성화 노드 강조)
+    style Root fill:#f9f,stroke:#333,stroke-width:2px
+    style SoC fill:#bbf,stroke:#333,stroke-width:2px
+    style AIPS1 fill:#dfd,stroke:#333,stroke-dasharray: 5 5
+    style AIPS2 fill:#dfd,stroke:#333,stroke-dasharray: 5 5
+    style AIPS3 fill:#dfd,stroke:#333,stroke-dasharray: 5 5
+    style AIPS4 fill:#dfd,stroke:#333,stroke-dasharray: 5 5
+```
