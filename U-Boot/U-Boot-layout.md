@@ -8,7 +8,7 @@ The `flash.bin` is organized so that the SoC's **ROM Code** can read the first p
 
 | Offset | Component | Description |
 | --- | --- | --- |
-| 0x0 | IVT / Boot Data | **Image Vector Table**([IVT](./U-Boot/tm/ivt_tm.md).): Contains header info for the ROM Code to start booting. |
+| 0x0 | IVT / Boot Data | **Image Vector Table**([IVT](./U-Boot/TM/ivt_tm.md).): Contains header info for the ROM Code to start booting. |
 | + Alpha | U-Boot SPL | Secondary Program Loader: The small, first-stage bootloader that initializes DDR RAM. |
 | + Alpha | DDR PHY Firmware | Binary blobs (e.g., lpddr4_pmu_train) required to train and initialize the DDR controller. |
 | FIT Offset | FIT Image Container | A wrapper that bundles the following components together: |
