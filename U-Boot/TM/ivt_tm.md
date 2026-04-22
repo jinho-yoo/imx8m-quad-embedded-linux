@@ -57,7 +57,7 @@ The ROM bootloader looks for the IVT at a specific offset within the flash memor
 
 If you open `image.h` in VS Code, you can see the `struct ivt` definition with detailed comments:
 
-C```
+```
 /* Location: arch/arm/include/asm/mach-imx/image.h */
 struct ivt {
     uint32_t header;       /* Header: Tag=0xd1, len=0x20, ver=0x40/0x41 */
