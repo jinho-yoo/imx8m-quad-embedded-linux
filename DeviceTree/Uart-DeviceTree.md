@@ -20,7 +20,7 @@ This base address acts as the **physical gateway** for the CPU to access the int
 
 First, we define the absolute hardware address and properties at the SoC level. This is where the memory map address is implemented.
 
-DTS```
+```
 / {
 	soc {
 		aips1: bus@30000000 {  // UART is attached under the AIPS1 bus
@@ -43,7 +43,7 @@ DTS```
 
 To use this UART during the early boot stage (SPL), the `u-boot,dm-spl;` property must be added as seen in your provided files.
 
-DTS```
+```
 &soc {
 	u-boot,dm-spl; // Enable SoC for SPL [cite: 4]
 };
@@ -64,7 +64,7 @@ DTS```
 
 Finally, declare that UART1 will be used as the actual debug console for the specific board.
 
-DTS```
+```
 / {
 	chosen {
 		stdout-path = &uart1; // Redirect system logs to UART1
