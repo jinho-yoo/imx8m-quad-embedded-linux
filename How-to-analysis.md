@@ -105,7 +105,7 @@ U-Boot 소스 트리에는 `.c`, `.h` 외에도 `Makefile`, `Kconfig`, `.dts`, `
 
 임베디드 개발에서 중요한 파일들(`Makefile`, `Kconfig`, `dts`, `dtsi`, `s`, `S`)을 명시적으로 포함하는 방식입니다. 가장 깔끔하게 필요한 소스만 골라낼 수 있습니다.
 
-Bash```
+```
 find arch/arm/mach-imx/imx8m/ -type f \( -name "*.[chS]" -o -name "*.dts*" -o -name "Makefile" -o -name "Kconfig" \) | xargs awk 'FNR==1{print "\n\n/* --- File: "FILENAME" --- */\n"}1' > imx8m_all_text_source.txt
 
 ```
@@ -114,7 +114,7 @@ find arch/arm/mach-imx/imx8m/ -type f \( -name "*.[chS]" -o -name "*.dts*" -o -n
 
 확장자와 상관없이 파일 내용이 텍스트(ASCII 등)인 파일만 골라냅니다. 바이너리 파일은 자동으로 제외됩니다.
 
-Bash```
+```
 find arch/arm/mach-imx/imx8m/ -type f -exec grep -Iq . {} \; -print | xargs awk 'FNR==1{print "\n\n/* --- File: "FILENAME" --- */\n"}1' > imx8m_all_text_source.txt
 
 ```
