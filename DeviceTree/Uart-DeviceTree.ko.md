@@ -45,7 +45,7 @@ NXP에서 제공하는 i.MX8MQ Reference Manual에 따르면, 첫 번째 시리�
 
 제공해주신 파일들처럼, 부팅 초기 단계(SPL)에서도 이 UART를 사용하려면 `u-boot,dm-spl` 속성을 추가해야 합니다.
 
-DTS```
+```
 &soc {
 	u-boot,dm-spl; // [cite: 4]
 };
@@ -66,7 +66,7 @@ DTS```
 
 최종적으로 특정 보드에서 UART1을 실제 디버그 콘솔로 사용하겠다고 선언합니다.
 
-DTS```
+```
 / {
 	chosen {
 		stdout-path = &uart1; // 시스템 로그를 UART1로 출력
