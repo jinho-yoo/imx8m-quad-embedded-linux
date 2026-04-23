@@ -74,7 +74,7 @@ VS Code에서 **CodeToText** 기능을 통해 소스 코드를 하나로 합치�
 
 확장 프로그램 설정이 복잡하다면, VS Code 내장 터미널(`Ctrl + ~`)에서 아래 명령어를 한 줄만 입력해도 결과는 같습니다. i.MX8M 폴더 내의 모든 소스를 하나로 합치는 명령어입니다.
 
-Bash```
+```
 # 특정 디렉토리의 모든 .c와 .h 파일을 하나의 텍스트로 합치기
 find arch/arm/mach-imx/imx8m/ -name "*.[ch]" | xargs awk 'FNR==1{print "\n\n/* --- File: "FILENAME" --- */\n"}1' > imx8m_all_source.txt
 
