@@ -95,3 +95,40 @@ find arch/arm/mach-imx/imx8m/ -name "*.[ch]" | xargs awk 'FNR==1{print "\n\n/* -
 
 ---
 
+기존 명령어에서 특정 확장자(`.[ch]`)만 찾던 부분을 **텍스트 형식의 파일이라면 모두 포함**하도록 수정하려면, 파일의 속성을 확인하는 `file` 명령어를 조합하거나 확장자 범위를 넓히는 방법을 사용할 수 있습니다.
+
+U-Boot 소스 트리에는 `.c`, `.h` 외에도 `Makefile`, `Kconfig`, `.dts`, `.dtsi` 등 중요한 텍스트 파일이 많으므로, 아래 명령어들이 훨씬 유용할 것입니다.
+
+---
+
+### 1. 주요 텍스트 확장자를 모두 포함하는 방법 (가장 추천)
+
+임베디드 개발에서 중요한 파일들(`Makefile`, `Kconfig`, `dts`, `dtsi`, `s`, `S`)을 명시적으로 포함하는 방식입니다. 가장 깔끔하게 필요한 소스만 골라낼 수 있습니다.
+
+Bash```
+find arch/arm/mach-imx/imx8m/ -type f \( -name "*.[chS]" -o -name "*.dts*" -o -name "Makefile" -o -name "Kconfig" \) | xargs awk 'FNR==1{print "\n\n/* --- File: "FILENAME" --- */\n"}1' > imx8m_all_text_source.txt
+
+```
+
+### 2. 실제 파일 내용이 '텍스트'인 것만 자동으로 찾는 방법
+
+확장자와 상관없이 파일 내용이 텍스트(ASCII 등)인 파일만 골라냅니다. 바이너리 파일은 자동으로 제외됩니다.
+
+Bash```
+find arch/arm/mach-imx/imx8m/ -type f -exec grep -Iq . {} \; -print | xargs awk 'FNR==1{print "\n\n/* --- File: "FILENAME" --- */\n"}1' > imx8m_all_text_source.txt
+
+```
+
+- -exec grep -Iq . {} \; -print: 파일 내용이 바이너리가 아닌 텍스트인 경우에만 경로를 출력합니다.
+
+---
+
+### 💡 NotebookLM 분석을 위한 팁
+
+이렇게 합친 파일에는 이제 **Device Tree(dtsi)** 내용도 포함되어 있을 것입니다. NotebookLM에 이 파일을 올린 후 다음과 같이 질문해 보세요.
+
+> **"소스 코드 안에 포함된 dtsi 파일의 binman 섹션을 참고해서, i.MX8M의 flash.bin이 어떤 오프셋에 어떤 바이너리들을 배치하는지 표로 정리해줘."**
+
+이제 **i.MX8M의 하드웨어 설정(DTS)과 실행 로직(C)**이 한 파일에 모두 담겼기 때문에, NotebookLM이 훨씬 더 정확하게 부팅 흐름을 짚어낼 수 있을 것입니다. 명령어를 실행하시다가 파일이 너무 많아져서 오류가 난다면(Argument list too long), 알려주세요! 다른 우회 방법을 알려드리겠습니다.
+
+
