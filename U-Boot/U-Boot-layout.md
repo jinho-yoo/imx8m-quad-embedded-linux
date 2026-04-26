@@ -23,7 +23,7 @@ The `flash.bin` is organized so that the SoC's **ROM Code** can read the first p
 
 To get the best out of NotebookLM, focus on these files to understand how this "Package" is put together:
 
-- Look for **binman**: Modern U-Boot uses a tool called binman to assemble flash.bin. Upload the file arch/arm/dts/imx8mp-u-boot.dtsi (replace imx8mp with your specific SoC). Look for the binman { ... }; section; it defines exactly which file goes into which offset.
+- Look for **binman**: Modern U-Boot uses a tool called binman to assemble flash.bin. Upload the file arch/arm/dts/imx8mq-u-boot.dtsi (replace imx8mp with your specific SoC). Look for the binman { ... }; section; it defines exactly which file goes into which offset.
 - The Build Log: When you compile U-Boot, look for a table in the terminal output starting with Image Type: NXP i.MX8M Boot Image. Copy and paste that table into a text file and upload it. You can then ask: "Based on the build log, what is the exact start address of the ATF inside flash.bin?"
 - The Boot Sequence: Use this mental model for your prompts:ROM Code loads SPL.SPL loads DDR Firmware to wake up the RAM.SPL finds the FIT Image, then loads ATF and U-Boot Proper into the now-ready RAM.ATF starts first, then jumps to U-Boot Proper.
 
