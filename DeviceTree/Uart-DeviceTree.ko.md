@@ -15,6 +15,9 @@ NXP에서 제공하는 i.MX8MQ Reference Manual에 따르면, 첫 번째 시리�
 이 주소는 CPU가 UART 컨트롤러의 내부 레지스터에 접근하기 위한 **물리적 대문**입니다.
 
 ---
+<img src="./images/Uart-address.PNG" width="400px" alt="i.MX8M NXP MCIMX8M RM">
+
+---
 
 ### 2. 단계별 디바이스 트리 작성 예제
 
