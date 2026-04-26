@@ -61,7 +61,8 @@ This section defines the specific configuration for the first UART controller.
 
 ### ⚙️ Driver Compatibility (compatible)
 
-- compatible = "fsl,imx8mq-uart", "fsl,imx21-uart";This string tells the Linux kernel which driver to load.It first looks for a specific i.MX8MQ driver. If not found, it falls back to the i.MX21 driver, as NXP's UART hardware design is largely compatible across these generations.
+- compatible = "fsl,imx8mq-uart", "fsl,imx21-uart";
+  - This string tells the Linux kernel which driver to load.It first looks for a specific i.MX8MQ driver. If not found, it falls back to the i.MX21 driver, as NXP's UART hardware design is largely compatible across these generations.
 
 ### ⚡ Interrupts (interrupts)
 
