@@ -65,11 +65,15 @@ This section defines the specific configuration for the first UART controller.
 
 ### ⚡ Interrupts (interrupts)
 
-- interrupts = <GIC_SPI 26 IRQ_TYPE_LEVEL_HIGH>;GIC_SPI 26: It uses Interrupt ID 26 (Shared Peripheral Interrupt) managed by the ARM Generic Interrupt Controller.IRQ_TYPE_LEVEL_HIGH: The interrupt is triggered when the signal level is "High."
+- interrupts = <GIC_SPI 26 IRQ_TYPE_LEVEL_HIGH>;
+  - GIC_SPI 26: It uses Interrupt ID 26 (Shared Peripheral Interrupt) managed by the ARM Generic Interrupt Controller.
+  - IRQ_TYPE_LEVEL_HIGH: The interrupt is triggered when the signal level is "High."
 
 ### 🕒 Clock Configuration (clocks)
 
-- clocks = <&clk IMX8MQ_CLK_UART1_ROOT>, ...;ipg (Interface clock): Used for communication between the CPU and the peripheral registers.per (Peripheral clock): The source clock used to generate the actual Baud Rate for serial communication.
+- clocks = <&clk IMX8MQ_CLK_UART1_ROOT>, ...;
+  - ipg (Interface clock): Used for communication between the CPU and the peripheral registers.
+  - per (Peripheral clock): The source clock used to generate the actual Baud Rate for serial communication.
 
 ---
 
