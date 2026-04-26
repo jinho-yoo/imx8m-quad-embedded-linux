@@ -115,6 +115,56 @@ This system is why Linux is so flexible. If you move to a new SoC or change hard
 - interrupts = <GIC_SPI 26 IRQ_TYPE_LEVEL_HIGH>;
   - GIC_SPI 26: It uses Interrupt ID 26 (Shared Peripheral Interrupt) managed by the ARM Generic Interrupt Controller.
   - IRQ_TYPE_LEVEL_HIGH: The interrupt is triggered when the signal level is "High."
+That is a very insightful question. Understanding the difference between **Level-Triggered** and **Edge-Triggered** interrupts is crucial for embedded development.
+
+The short answer is: No, it does not only trigger at the first transition. However, the system is designed to prevent it from firing "infinitely" in a way that crashes the CPU.
+
+Here is the breakdown of how `IRQ_TYPE_LEVEL_HIGH` works compared to your intuition.
+
+---
+
+### 1) Level-High (Level-Triggered) Logic
+
+When you use `IRQ_TYPE_LEVEL_HIGH`, the interrupt controller looks at the **state** (voltage level) of the signal, not the change.
+
+- How it works: The CPU/Interrupt Controller detects that the line is High (1). It then flags an interrupt and calls the Interrupt Service Routine (ISR) in your driver.
+- The "Continuous" Problem: If the line stays High after the ISR finishes, the CPU will think, "Wait, the signal is still High, there must be another event to handle!" and it will immediately trigger the interrupt again.
+- The Solution (Clearing): In your driver code, you must talk to the hardware (e.g., the UART or Ethernet controller) and tell it to "Clear the Interrupt Status." This action forces the hardware to pull the signal back to Low.
+
+---
+
+### 2) Comparison with Edge-Triggered
+
+The behavior you described—triggering only when the signal *first* changes from Low to High—is actually called **Edge-Triggering**.
+
+| Type | Device Tree Constant | Trigger Condition | Behavior |
+| --- | --- | --- | --- |
+| Level High | IRQ_TYPE_LEVEL_HIGH | While the signal is High | Stays active until the software clears the hardware status. |
+| Rising Edge | IRQ_TYPE_EDGE_RISING | The moment it flips Low → High | Fires once per transition. If it stays High, nothing else happens until it goes Low and High again. |
+
+---
+
+### 3) Why i.MX8M uses Level Interrupts for UART/FEC
+
+In the `imx8mq-u-boot.dtsi` and the examples we discussed, major peripherals like `&uart1` or `&fec1` (Ethernet) typically use level interrupts.
+
+- Reliability: Level interrupts are less prone to "missing" an event. If the CPU is busy and misses the "edge" of a signal, an edge-triggered interrupt might never fire. With a level interrupt, the signal stays High until the CPU is finally free to handle it.
+- Shared Lines: Multiple hardware blocks can share a single interrupt line more easily using level-triggering.
+
+### 4) Summary: Does it fire "forever" if High?
+
+Technically, **yes**, it remains "pending" as long as the line is High. But in practice:
+
+1. The Interrupt Controller sees the High signal.
+2. It stops further interrupts from that specific line (Masking).
+3. The Driver runs, processes the data, and clears the hardware bit.
+4. The hardware pulls the line Low.
+5. The Interrupt Controller "unmasks" the line, ready for the next event.
+
+If you ever experience a "system hang" where the console stops responding after one interrupt, it is often because the driver forgot to clear the status, causing an infinite loop of the same interrupt!
+
+
+
 
 ### 🕒 Clock Configuration (clocks)
 
