@@ -31,7 +31,7 @@ The IVT consists of the following fields, each being **4 bytes (32-bit)** in siz
 
 | Field | Actual Value / Meaning |
 | --- | --- |
-| header | Tag (0xD1), Length (0x0020), Version (0x40/0x41)A header used to verify the validity of the IVT structure. |
+| header | Tag (0xD1), Length (0x0020), Version (0x40/0x41)  A header used to verify the validity of the IVT structure. |
 | entry | Image Entry Point AddressThe absolute memory address the ROM jumps to after the copy process is complete. |
 | reserved1 | Usually set to 0. |
 | dcd | DCD (Device Configuration Data) AddressPoints to a table of commands for hardware initialization (e.g., DDR controller setup). |
