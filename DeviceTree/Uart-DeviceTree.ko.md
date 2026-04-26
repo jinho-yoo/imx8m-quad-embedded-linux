@@ -65,6 +65,9 @@ NXP에서 제공하는 i.MX8MQ Reference Manual에 따르면, 첫 번째 시리�
 
 - reg = <0x30860000 0x10000>;0x30860000: UART1 제어 레지스터가 시작되는 베이스 주소입니다.0x10000: 이전 질문에서 계산했던 64KB입니다. 즉, 이 UART 컨트롤러가 0x30860000부터 0x3086FFFF까지의 주소 공간을 점유한다는 뜻입니다.
 
+<hr style="border: 2px solid black;">
+---
+
 ### ⚙️ 드라이버 매칭 (compatible)
 
 - compatible = "fsl,imx8mq-uart", "fsl,imx21-uart";운영체제가 이 장치를 구동하기 위해 어떤 드라이버를 사용할지 결정합니다.먼저 i.MX8MQ 전용 드라이버를 찾고, 없으면 호환성이 검증된 i.MX21 드라이버를 사용하라는 의미입니다. (i.MX 시리즈는 하드웨어 IP 설계의 연속성이 높기 때문입니다.)
