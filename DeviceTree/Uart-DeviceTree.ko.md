@@ -4,7 +4,7 @@ i.MX8M 시리즈에서 UART 장치를 활성화하기 위해 메모리 맵(Memor
 
 ---
 
-### 1. i.MX8MQ UART1 메모리 맵 (하드웨어 사양)
+# 1. i.MX8MQ UART1 메모리 맵 (하드웨어 사양)
 
 NXP에서 제공하는 i.MX8MQ Reference Manual에 따르면, 첫 번째 시리얼 포트인 **UART1**의 하드웨어 주소 정보는 다음과 같습니다.
 
@@ -19,9 +19,9 @@ NXP에서 제공하는 i.MX8MQ Reference Manual에 따르면, 첫 번째 시리�
 
 ---
 
-### 2. 단계별 디바이스 트리 작성 예제
+# 2. 단계별 디바이스 트리 작성 예제
 
-#### Step 1: SoC 공통 레벨 정의 (imx8mq.dtsi 등)
+## Step 1: SoC 공통 레벨 정의 (imx8mq.dtsi 등)
 
 먼저 SoC 수준에서 하드웨어의 절대적인 주소와 속성을 정의합니다. 앞서 확인한 메모리 맵 주소가 여기에 들어갑니다.
 
@@ -48,7 +48,7 @@ NXP에서 제공하는 i.MX8MQ Reference Manual에 따르면, 첫 번째 시리�
 
 ---
 
-## 1. 계층 구조 및 버스 연결
+### 1. 계층 구조 및 버스 연결
 
 디바이스 트리는 하드웨어의 물리적 연결 구조를 트리 형태로 나타냅니다.
 
@@ -57,18 +57,18 @@ NXP에서 제공하는 i.MX8MQ Reference Manual에 따르면, 첫 번째 시리�
 
 ---
 
-## 2. UART1 노드 상세 분석 (uart1: serial@30860000)
+### 2. UART1 노드 상세 분석 (uart1: serial@30860000)
 
 이 부분이 실제 UART1 하드웨어 설정의 핵심입니다.
 
-### 📍 주소 및 크기 (reg)
+#### 📍 주소 및 크기 (reg)
 
 - reg = <0x30860000 0x10000>;0x30860000: UART1 제어 레지스터가 시작되는 베이스 주소입니다.0x10000: 이전 질문에서 계산했던 64KB입니다. 즉, 이 UART 컨트롤러가 0x30860000부터 0x3086FFFF까지의 주소 공간을 점유한다는 뜻입니다.
 
 <hr style="border: 2px solid black;">
 ---
 
-### ⚙️ 드라이버 매칭 (compatible)
+#### ⚙️ 드라이버 매칭 (compatible)
 
 - compatible = "fsl,imx8mq-uart", "fsl,imx21-uart";운영체제가 이 장치를 구동하기 위해 어떤 드라이버를 사용할지 결정합니다.먼저 i.MX8MQ 전용 드라이버를 찾고, 없으면 호환성이 검증된 i.MX21 드라이버를 사용하라는 의미입니다. (i.MX 시리즈는 하드웨어 IP 설계의 연속성이 높기 때문입니다.)
 
@@ -78,7 +78,7 @@ NXP에서 제공하는 i.MX8MQ Reference Manual에 따르면, 첫 번째 시리�
 
 ---
 
-#### 1. 드라이버의 "자기소개서" (of_device_id)
+##### 1. 드라이버의 "자기소개서" (of_device_id)
 
 리눅스 커널 내의 UART 드라이버 코드(예: `drivers/tty/serial/imx.c`)에는 자신이 어떤 장치를 지원할 수 있는지 적어놓은 리스트가 있습니다. 이를 `of_device_id` 구조체라고 합니다.
 
@@ -94,14 +94,14 @@ MODULE_DEVICE_TABLE(of, imx_uart_dt_ids);
 
 - 드라이버의 선언: "나는 fsl,imx8mq-uart나 fsl,imx21-uart라고 써진 장치를 제어할 줄 알아!"라고 커널에 보고합니다.
 
-#### 2. 매칭 과정 (The Matching Process)
+##### 2. 매칭 과정 (The Matching Process)
 
 커널이 디바이스 트리(`dtsi`)를 읽으면서 `uart1` 노드를 발견하면, 해당 노드의 `compatible` 문자열을 가지고 이미 등록된 드라이버들을 전수 조사합니다.
 
 - 우선순위 매칭: 리스트에 있는 순서대로 검사합니다.먼저 **"fsl,imx8mq-uart"**를 가진 드라이버가 있는지 찾습니다. (가장 구체적인 모델명)없다면 그 다음인 **"fsl,imx21-uart"**를 가진 드라이버가 있는지 찾습니다. (하위 호환성을 위한 범용 모델명)
 - 하위 호환성의 이유: i.MX8MQ의 UART는 아주 오래전 모델인 i.MX21의 UART 설계와 레지스터 구조가 거의 같기 때문에, 굳이 새 드라이버를 만들지 않고 기존 드라이버를 재사용하기 위해 저렇게 두 개를 적어줍니다.
 
-#### 3. 프로브(Probe) 함수 호출
+##### 3. 프로브(Probe) 함수 호출
 
 매칭되는 드라이버를 찾으면, 커널은 해당 드라이버의 `probe` 함수를 실행합니다.
 
@@ -110,7 +110,7 @@ MODULE_DEVICE_TABLE(of, imx_uart_dt_ids);
 
 ---
 
-#### 요약하자면
+##### 요약하자면
 
 - DTSI: "여기에 fsl,imx8mq-uart 사양의 장치가 있다"라고 알림.
 - Driver: "나는 fsl,imx8mq-uart를 다룰 줄 안다"라고 커널에 등록됨.
@@ -120,7 +120,7 @@ MODULE_DEVICE_TABLE(of, imx_uart_dt_ids);
 
 ==========================================================================
 
-### ⚡ 인터럽트 (interrupts)
+#### ⚡ 인터럽트 (interrupts)
 
 - interrupts = <GIC_SPI 26 IRQ_TYPE_LEVEL_HIGH>;GIC_SPI 26: ARM의 인터럽트 컨트롤러(GIC)에서 관리하는 **26번 공유 주변 장치 인터럽트(SPI)**를 사용합니다.IRQ_TYPE_LEVEL_HIGH: 신호가 'High' 레벨일 때 인터럽트가 발생하도록 설정되어 있습니다.
 
@@ -132,7 +132,7 @@ MODULE_DEVICE_TABLE(of, imx_uart_dt_ids);
 
 ---
 
-#### 1. Level High (레벨 트리거) 방식의 동작
+##### 1. Level High (레벨 트리거) 방식의 동작
 
 `IRQ_TYPE_LEVEL_HIGH`는 신호가 **'High(1)' 상태 유지**를 기준으로 판단합니다.
 
@@ -140,7 +140,7 @@ MODULE_DEVICE_TABLE(of, imx_uart_dt_ids);
 - 중요 포인트: 인터럽트가 발생해서 드라이버의 처리 함수가 실행되더라도, 신호 선이 여전히 High라면 CPU는 "어? 아직 처리할 게 남았나 보네?"라고 생각합니다.
 - 처리 방법: 따라서 드라이버 소프트웨어는 하드웨어 레지스터를 조작하여 해당 장치가 신호를 다시 Low로 내리도록 명령해야 합니다. 그래야만 다음 인터럽트를 받을 준비가 됩니다.
 
-#### 2. Edge Trigger (엣지 트리거)와의 비교
+##### 2. Edge Trigger (엣지 트리거)와의 비교
 
 질문하신 "Low에서 High로 변할 때만 발생"하는 방식은 **Edge Trigger**입니다.
 
@@ -152,7 +152,7 @@ MODULE_DEVICE_TABLE(of, imx_uart_dt_ids);
 
 ---
 
-#### 3. "High면 무조건 계속 발생하나요?"에 대한 답
+##### 3. "High면 무조건 계속 발생하나요?"에 대한 답
 
 이론적으로는 **"처리가 완료되어 신호가 내려가기 전까지는 계속 유효(Pending)"**한 상태입니다.
 
@@ -162,7 +162,7 @@ MODULE_DEVICE_TABLE(of, imx_uart_dt_ids);
 
 ---
 
-#### 💡 요약
+##### 💡 요약
 
 - IRQ_TYPE_LEVEL_HIGH: 신호가 High인 동안 인터럽트가 "유효"합니다. 소프트웨어가 하드웨어에 명령을 내려 신호를 Low로 떨어뜨려야 인터럽트가 종료됩니다.
 - 최초 변할 때만 발생: 이것은 IRQ_TYPE_EDGE_RISING (Edge Trigger) 방식입니다.
@@ -171,26 +171,26 @@ i.MX8M 하드웨어 트리 구조에서 보셨던 `&uart1`이나 `&fec1` 같은 
 
 ==========================================================================
 
-### 🕒 클록 설정 (clocks)
+#### 🕒 클록 설정 (clocks)
 
 - clocks = <&clk IMX8MQ_CLK_UART1_ROOT>, ...;UART가 동작하기 위해 필요한 클록 소스를 지정합니다.ipg: 버스 인터페이스용 클록, per: 실제 데이터 통신 속도(Baud rate)를 결정하는 주변 장치 클록입니다.
 
 ---
 
-## 3. 상태 설정 (status)
+### 3. 상태 설정 (status)
 
 - status = "disabled";이 장치가 기본적으로는 비활성화되어 있다는 뜻입니다.실제 보드(예: EVK 보드) 설정 파일(.dts 또는 .dtsi)에서 이 UART를 사용하려면 이 값을 "okay"로 덮어써야(override) 합니다.
 
 ---
 
-### 💡 요약 및 활용
+##### 💡 요약 및 활용
 
 이 코드는 **"주소 0x30860000에 있고 크기가 64KB인 UART1 장치가 AIPS1 버스에 달려 있는데, 현재는 꺼져 있다"**는 정보를 커널에 전달합니다.
 
 U-Boot 소스코드를 분석하실 때, `include/configs/imx8mq_evk.h`나 관련 보드 파일에서 이 주소(`0x30860000`)가 디버그 콘솔용으로 정의되어 있는지 확인하면 됩니다.
 
 
-#### Step 2: U-Boot 및 부팅 환경 설정 (imx8mq-u-boot.dtsi)
+## Step 2: U-Boot 및 부팅 환경 설정 (imx8mq-u-boot.dtsi)
 
 제공해주신 파일들처럼, 부팅 초기 단계(SPL)에서도 이 UART를 사용하려면 `u-boot,dm-spl` 속성을 추가해야 합니다.
 
@@ -211,7 +211,7 @@ U-Boot 소스코드를 분석하실 때, `include/configs/imx8mq_evk.h`나 관�
 
 - 중요: UART1에 접근하기 위해 상위 부모 노드인 soc와 aips1 통로도 함께 열어줘야 합니다.
 
-#### Step 3: 보드 레벨 활성화 (imx8mq-evk.dts)
+## Step 3: 보드 레벨 활성화 (imx8mq-evk.dts)
 
 최종적으로 특정 보드에서 UART1을 실제 디버그 콘솔로 사용하겠다고 선언합니다.
 
