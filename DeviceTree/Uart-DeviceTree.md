@@ -13,6 +13,9 @@ According to the i.MX8MQ Reference Manual, the hardware address information for 
 This base address acts as the **physical gateway** for the CPU to access the internal registers of the UART controller.
 
 ---
+<img src="../images/Uart-address.PNG" width="400px" alt="i.MX8M NXP MCIMX8M RM">
+
+---
 
 ### 2. Step-by-Step Device Tree Construction
 
