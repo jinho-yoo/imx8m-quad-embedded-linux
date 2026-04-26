@@ -172,7 +172,10 @@ i.MX8M 하드웨어 트리 구조에서 보셨던 `&uart1`이나 `&fec1` 같은 
 
 #### 🕒 클록 설정 (clocks)
 
-- clocks = <&clk IMX8MQ_CLK_UART1_ROOT>, ...;UART가 동작하기 위해 필요한 클록 소스를 지정합니다.ipg: 버스 인터페이스용 클록, per: 실제 데이터 통신 속도(Baud rate)를 결정하는 주변 장치 클록입니다.
+- clocks = <&clk IMX8MQ_CLK_UART1_ROOT>, ...;
+  UART가 동작하기 위해 필요한 클록 소스를 지정합니다.
+  - ipg: 버스 인터페이스용 클록,
+  - per: 실제 데이터 통신 속도(Baud rate)를 결정하는 주변 장치 클록입니다.
 
 ---
 
