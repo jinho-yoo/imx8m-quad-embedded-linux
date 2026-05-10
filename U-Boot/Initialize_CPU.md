@@ -22,7 +22,11 @@ Yes, it is the most fundamental stage of booting. It transforms raw silicon into
 
 - Establishing a "Point of Survival": At power-on, the CPU is in an undefined state. Initialization sets up the Vector Table (exception handling) and the Stack Pointer. Since DDR RAM isn't active yet, it often uses the L1 Cache as temporary RAM (Cache-as-RAM) to run C code.
 - Security Foundation: In modern SoCs like the i.MX8M, initialization sets up the TrustZone environment. It works with ARM Trusted Firmware (ATF) to separate the Secure World from the Normal World.
-- Hardware Hand-off: The ultimate goal is to prepare the environment for the Operating System. This includes:Clock Scaling: Moving from a slow default clock to high-speed GHz operations.MMU (Memory Management Unit) Setup: Preparing virtual-to-physical address mapping.Power Management: Communicating with the PMIC to ensure the CPU core has enough voltage for high-performance tasks.
+- Hardware Hand-off: The ultimate goal is to prepare the environment for the Operating System.
+  This includes:  
+  - Clock Scaling: Moving from a slow default clock to high-speed GHz operations.
+  - MMU (Memory Management Unit) Setup: Preparing virtual-to-physical address mapping.
+  - Power Management: Communicating with the PMIC to ensure the CPU core has enough voltage for high-performance tasks.
 
 ---
 
