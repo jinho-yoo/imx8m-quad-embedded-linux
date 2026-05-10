@@ -44,7 +44,8 @@ In short, CPU initialization is the "bridge" between hardware power-up and softw
 ---
 
 ## Stage 1
-Here is the English translation of the explanation regarding the process of loading the SPL into the internal OCRAM.
+
+---
 
 ---
 
