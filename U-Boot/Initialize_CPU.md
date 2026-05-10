@@ -8,6 +8,7 @@ For the i.MX8MQ EVK, CPU and SoC initialization is handled within the NXP-specif
 
 - Low-level Logic: **arch/arm/mach-imx/imx8m/**
 - SoC Specifics: **arch/arm/mach-imx/imx8m/soc.c** (Handles arch_cpu_init, WDOG disable, and AIPS configuration).
+  # SoC Specifics라는 표현은 임베디드 시스템에서 "특정 SoC(System on Chip) 모델에만 해당되는 고유한 설정이나 하드웨어적 특징"을 의미합니다.
 - Clock Control: **arch/arm/mach-imx/imx8m/clock.c** (Configures PLLs and peripheral clock roots).
 - Board Level (SPL): **board/freescale/imx8mq_evk/spl.c** (Initializes PMIC voltages and triggers the complex DDR training sequence).
 
