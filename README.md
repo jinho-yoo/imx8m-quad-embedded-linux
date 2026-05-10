@@ -11,7 +11,7 @@ This project demonstrates the full-stack development of an embedded Linux system
 
 
 ## 💻 Block Diagram
-<img src="./images/Block_Diagram.png" width="400px" alt="i.MX8M NXP MCIMX8M-EVKB blockdiagram">
+<img src="./images/block_diagram.png" width="400px" alt="i.MX8M NXP MCIMX8M-EVKB blockdiagram">
 
 ## 💻 System Specification
 
