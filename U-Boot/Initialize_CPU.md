@@ -32,11 +32,67 @@ Yes, it is the most fundamental stage of booting. It transforms raw silicon into
 
 ### Summary Table
 
-| Stage | Primary Responsibility | Key Files |
-| --- | --- | --- |
-| ROM Code | Load SPL to internal OCRAM | (On-chip ROM) |
-| SPL | DDR Training, PMIC setup, Basic Clocks | spl.c, soc.c |
-| ATF | Security (EL3), PSCI (Power control) | bl31.bin (External) |
-| U-Boot | Load Kernel, Device Tree, Boot OS | u-boot.bin |
+| No | Stage | Primary Responsibility | Key Files |
+| --- | --- | --- | --- |
+| 1 | ROM Code | Load SPL to internal OCRAM | (On-chip ROM) |
+| 2 | SPL | DDR Training, PMIC setup, Basic Clocks | spl.c, soc.c |
+| 3 | ATF | Security (EL3), PSCI (Power control) | bl31.bin (External) |
+| 4 | U-Boot | Load Kernel, Device Tree, Boot OS | u-boot.bin |
 
 In short, CPU initialization is the "bridge" between hardware power-up and software execution. If a single register is misconfigured here, the system will likely "brick" before it can even print a serial console message.
+
+---
+
+## Stage 1
+Here is the English translation of the explanation regarding the process of loading the SPL into the internal OCRAM.
+
+---
+
+### 1. Power-on and ROM Code Execution
+
+When the SoC is powered on, the **ROM Code**, which is hard-wired into the CPU, executes first.
+
+- Role of OCRAM: At this stage, the external DDR RAM is not yet initialized and cannot be used. Therefore, the CPU uses the OCRAM (On-Chip RAM)—a small memory area inside the chip (typically 128KB to 512KB for i.MX8MQ)—as a temporary workspace.
+
+### 2. Boot Mode Selection
+
+The ROM Code reads the status of the **Boot Configuration pins** (such as Dip switches on the EVK) to determine where to fetch the boot data.
+
+- Targets: eMMC, SD Card, NAND Flash, or USB (Serial Download Mode).
+
+### 3. Image Header Analysis (IVT)
+
+The ROM Code reads a specific sector of the selected boot media to find the **IVT (Image Vector Table)**.
+
+- The IVT contains critical information: the physical location of the SPL on the media, its size, and the target address in OCRAM where it should be copied.
+
+### 4. Loading Process (Copying to OCRAM)
+
+The ROM Code copies the SPL binary (usually `u-boot-spl.bin`) from the boot media to the OCRAM.
+
+| Stage | Executed By | Action |
+| --- | --- | --- |
+| Copy | ROM Code | Transfers data from Boot Media (SD/eMMC) → OCRAM Address (e.g., 0x912000). |
+| Verify | ROM Code | (In Secure Boot) Uses the HAB (High Assurance Boot) feature to verify the image signature. |
+| Jump | ROM Code | Once copying is complete, the CPU's PC (Program Counter) jumps to the SPL start address in OCRAM. |
+
+### 5. SPL Execution
+
+Control is handed over from the ROM Code to the **SPL**. Now running from OCRAM, the SPL performs the following core tasks:
+
+1. Enable I-Cache: Improves execution speed.
+2. Initialize DDR Controller: Uses the timing data (like the lpddr4_timing_b0.c file you shared) to activate the external RAM.
+3. Load Main U-Boot: Once DDR is ready, the SPL loads the much larger Main U-Boot binary into the DDR RAM.
+
+---
+
+#### Why use OCRAM instead of going directly to DDR?
+
+DDR RAM requires a very complex initialization sequence, including voltage configuration and timing calibration. Since the ROM Code is designed to be generic, it cannot know the specific DDR configuration of every possible board. Therefore, it uses the **"Bootstrap" method**: loading a small piece of code (SPL) into the internal memory (OCRAM) first, which then takes care of the complex hardware-specific setup.
+
+#### Summary
+
+> **[Power On]** → **[Execute ROM Code]** → **[Check Boot Pins]** → **[Read SPL from SD/eMMC]** → **[Write to OCRAM]** → **[Execute SPL & Initialize DDR]**
+
+If this process succeeds, you will see the first boot message on your serial terminal, such as `U-Boot SPL 202X.XX ...`. If it fails here, the board will remain silent with no output.
+
