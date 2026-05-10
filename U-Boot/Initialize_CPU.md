@@ -43,31 +43,29 @@ In short, CPU initialization is the "bridge" between hardware power-up and softw
 
 ---
 
-## Stage 1
+## 3.Stage 1
 
 ---
 
----
-
-### 1. Power-on and ROM Code Execution
+### 1) Power-on and ROM Code Execution
 
 When the SoC is powered on, the **ROM Code**, which is hard-wired into the CPU, executes first.
 
 - Role of OCRAM: At this stage, the external DDR RAM is not yet initialized and cannot be used. Therefore, the CPU uses the OCRAM (On-Chip RAM)—a small memory area inside the chip (typically 128KB to 512KB for i.MX8MQ)—as a temporary workspace.
 
-### 2. Boot Mode Selection
+### 2) Boot Mode Selection
 
 The ROM Code reads the status of the **Boot Configuration pins** (such as Dip switches on the EVK) to determine where to fetch the boot data.
 
 - Targets: eMMC, SD Card, NAND Flash, or USB (Serial Download Mode).
 
-### 3. Image Header Analysis (IVT)
+### 3) Image Header Analysis (IVT)
 
 The ROM Code reads a specific sector of the selected boot media to find the **IVT (Image Vector Table)**.
 
 - The IVT contains critical information: the physical location of the SPL on the media, its size, and the target address in OCRAM where it should be copied.
 
-### 4. Loading Process (Copying to OCRAM)
+### 4) Loading Process (Copying to OCRAM)
 
 The ROM Code copies the SPL binary (usually `u-boot-spl.bin`) from the boot media to the OCRAM.
 
@@ -77,7 +75,7 @@ The ROM Code copies the SPL binary (usually `u-boot-spl.bin`) from the boot medi
 | Verify | ROM Code | (In Secure Boot) Uses the HAB (High Assurance Boot) feature to verify the image signature. |
 | Jump | ROM Code | Once copying is complete, the CPU's PC (Program Counter) jumps to the SPL start address in OCRAM. |
 
-### 5. SPL Execution
+### 5) SPL Execution
 
 Control is handed over from the ROM Code to the **SPL**. Now running from OCRAM, the SPL performs the following core tasks:
 
