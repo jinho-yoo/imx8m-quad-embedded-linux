@@ -9,6 +9,10 @@
 
 This project demonstrates the full-stack development of an embedded Linux system, ranging from low-level bootloader customization to a functional Root Filesystem, optimized for the **NXP MCIMX8M-EVKB** platform.
 
+
+## 💻 Block Diagram
+<img src="./images/Block_Diagram.png" width="400px" alt="i.MX8M NXP MCIMX8M-EVKB blockdiagram">
+
 ## 💻 System Specification
 
 | **Feature** | **Details** |
