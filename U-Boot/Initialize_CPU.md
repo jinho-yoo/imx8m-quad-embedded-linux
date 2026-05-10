@@ -6,10 +6,10 @@ For the i.MX8MQ EVK, CPU and SoC initialization is handled within the NXP-specif
 
 ### Core Source Locations
 
-- Low-level Logic: arch/arm/mach-imx/imx8m/
-- SoC Specifics: arch/arm/mach-imx/imx8m/soc.c (Handles arch_cpu_init, WDOG disable, and AIPS configuration).
-- Clock Control: arch/arm/mach-imx/imx8m/clock.c (Configures PLLs and peripheral clock roots).
-- Board Level (SPL): board/freescale/imx8mq_evk/spl.c (Initializes PMIC voltages and triggers the complex DDR training sequence).
+- Low-level Logic: **arch/arm/mach-imx/imx8m/**
+- SoC Specifics: **arch/arm/mach-imx/imx8m/soc.c** (Handles arch_cpu_init, WDOG disable, and AIPS configuration).
+- Clock Control: **arch/arm/mach-imx/imx8m/clock.c** (Configures PLLs and peripheral clock roots).
+- Board Level (SPL): **board/freescale/imx8mq_evk/spl.c** (Initializes PMIC voltages and triggers the complex DDR training sequence).
 
 ---
 
