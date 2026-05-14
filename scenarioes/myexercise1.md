@@ -48,7 +48,7 @@
 
 ### 5. How do you feel about...? (생각이나 감정 묻기)
 
-특정 주제에 대한 상대방의 구체적인 생각이나 견해를 물을 때 씁니다.
+특정 주제에 대한 상대방의 **[구체적인 생각이나 견해]**를 물을 때 씁니다.
 
 - How do you feel about the new system architecture?
 (새로운 시스템 아키텍처에 대해 어떻게 생각하세요?)
