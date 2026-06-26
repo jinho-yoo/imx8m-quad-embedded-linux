@@ -59,7 +59,7 @@ The ROM Code reads the status of the **Boot Configuration pins** (such as Dip sw
 
 - Targets: eMMC, SD Card, NAND Flash, or USB (Serial Download Mode).
 
-### 3) Image Header Analysis (IVT)
+### 3) Image Header Analysis - IVT
 
 The ROM Code reads a specific sector of the selected boot media to find the **IVT (Image Vector Table)**.
 
