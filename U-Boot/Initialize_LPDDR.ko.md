@@ -21,9 +21,6 @@ SPL에서 DDR이 가동되기까지의 핵심 시퀀스는 다음과 같습니�
 
 SPL이 구동되면 하드웨어 초기화의 시작점인 `board_init_f` 함수가 실행되며, 여기서 PMIC 전원을 확보한 후 `spl_dram_init()`을 호출합니다.
 
-
-<pre style="background-color: #0d1117; color: #c9d1d9; padding: 16px; border-radius: 8px; font-family: ui-monospace, SFMono-Regular, SF Mono, Menlo, Consolas, Liberation Mono, monospace; line-height: 1.5; overflow-x: auto;">
-
 ```
 // board/freescale/mx8mq_evk/spl.c
 void board_init_f(ulong dummy)
@@ -42,8 +39,6 @@ void board_init_f(ulong dummy)
     spl_dram_init();
 }
 ```
-    
-</pre>
 
 -세부함수설명  
 i.MX8MQ EVK 보드 등 embedded 시스템에서 SPL 단계의 **power_init_board()** 함수는 보드가 켜진 직후, 메인 SoC(i.MX8MQ)와 외부 메모리(LPDDR4)가 오작동 없이 안정적으로 구동될 수 있도록 **PMIC(Power Management IC)칩을 제어하여 필요한 전압을 정확하게 맞추고 공급하는 핵심 하드웨어 초기화 함수**입니다.
@@ -64,7 +59,7 @@ i.MX8M 계열은 전력 소모와 성능의 밸런스를 위해 매우 복잡한
 실제 `board/freescale/mx8mq_evk/spl.c` (또는 해당 보드의 PMIC 드라이버) 소스 레벨에서 이 함수가 어떻게 구현되어 작동하는지 단계별로 매핑합니다.
 
 <details>
-<summary>📂 <b>[클릭] power_init_board() 전체 소스 코드 보기</b></summary>
+<summary>📂 [코드보기] power_init_board() 전체 소스 코드 보기</summary>
     
 ```
 int power_init_board(void)
