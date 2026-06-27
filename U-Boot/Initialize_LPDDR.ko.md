@@ -96,7 +96,8 @@ int power_init_board(void)
 </details>
 
 <details>
-<summary>📂 [코드보기] pmic_get("pmic@4b", &dev) 보기</summary>
+<summary>📂 [코드보기] pmic_get("pmic@4b", &dev) 보기</summary>  
+    
 `pmic_get("pmic@4b", &dev);` 코드는 U-Boot의 **DM(Driver Model, 드라이버 모델)** 프레임워크를 사용하여 I2C 버스에 연결된 특정 PMIC(Power Management IC) 장치를 찾아 제어 구조체 포인터에 할당하는 하드웨어 드라이버 핵심 코드입니다.
 
 이 한 줄의 코드가 내부적으로 어떤 의미를 가지고 어떻게 작동하는지 상세히 풀어서 설명해 드릴게요.
