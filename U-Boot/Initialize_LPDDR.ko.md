@@ -23,7 +23,6 @@ SPL이 구동되면 하드웨어 초기화의 시작점인 `board_init_f` 함수
 
 
 ```
-<pre style="background-color: #161b22; color: #e6edf3; padding: 16px; border-radius: 6px; font-family: monospace;">
 // board/freescale/mx8mq_evk/spl.c
 void board_init_f(ulong dummy)
 {
@@ -40,7 +39,6 @@ void board_init_f(ulong dummy)
     /* 3. 핵심: DDR 초기화 함수 호출 */
     spl_dram_init();
 }
-</pre>
 ```
 
 
