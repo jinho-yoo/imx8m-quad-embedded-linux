@@ -21,8 +21,8 @@ SPL에서 DDR이 가동되기까지의 핵심 시퀀스는 다음과 같습니�
 
 SPL이 구동되면 하드웨어 초기화의 시작점인 `board_init_f` 함수가 실행되며, 여기서 PMIC 전원을 확보한 후 `spl_dram_init()`을 호출합니다.
 
-// board/freescale/mx8mq_evk/spl.c
 ```
+// board/freescale/mx8mq_evk/spl.c
 void board_init_f(ulong dummy)
 {
     /* 1. 클록 및 기초 셋팅 */
@@ -67,7 +67,7 @@ void spl_dram_init(void)
 
 i.MX8MQ의 핵심 드라이버(`arch/arm/mach-imx/mx8m/ddr_init.c` 혹은 보드 폴더 내)에서는 Synopsys IP 시퀀스에 맞춰 동작합니다.
 
-C```
+```
 // arch/arm/mach-imx/mx8m/ddr_init.c (주요 개념 추상화)
 
 void ddr_init(struct dram_timing_info *dram_timing)
@@ -97,7 +97,6 @@ void ddr_init(struct dram_timing_info *dram_timing)
     
     printf("DDRINFO: ddrmix config done\n");
 }
-
 ```
 
 ### 단계 4: 가용성 확인 (U-Boot Proper로 토스)
