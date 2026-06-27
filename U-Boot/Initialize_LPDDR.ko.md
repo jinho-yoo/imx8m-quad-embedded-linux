@@ -41,14 +41,16 @@ void board_init_f(ulong dummy)
     /* 3. 핵심: DDR 초기화 함수 호출 */
     spl_dram_init();
 }
-
 ```
+
 
 ### 단계 2: DRAM 초기화 진입 및 구조체 설정
 
 `spl_dram_init()` 함수는 보드에 실장된 DDR 칩셋 정보 구조체(`dram_timing_info`)를 초기화 메인 드라이버에 넘겨줍니다.
 
-C```
+C
+```
+    
 // board/freescale/mx8mq_evk/spl.c
 
 void spl_dram_init(void)
