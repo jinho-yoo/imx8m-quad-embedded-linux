@@ -21,9 +21,9 @@ SPL에서 DDR이 가동되기까지의 핵심 시퀀스는 다음과 같습니�
 
 SPL이 구동되면 하드웨어 초기화의 시작점인 `board_init_f` 함수가 실행되며, 여기서 PMIC 전원을 확보한 후 `spl_dram_init()`을 호출합니다.
 
-C
+
 <pre style="background-color: #161b22; color: #e6edf3; padding: 16px; border-radius: 6px; font-family: monospace;">
-```
+`
 // board/freescale/mx8mq_evk/spl.c
 
 void board_init_f(ulong dummy)
@@ -41,7 +41,8 @@ void board_init_f(ulong dummy)
     /* 3. 핵심: DDR 초기화 함수 호출 */
     spl_dram_init();
 }
-```
+
+`
 
 
 ### 단계 2: DRAM 초기화 진입 및 구조체 설정
