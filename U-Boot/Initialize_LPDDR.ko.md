@@ -6,8 +6,8 @@ i.MX8M 계열은 하드웨어 특성상 고성능 Synopsys DDR 컨트롤러와 �
 
 SPL에서 DDR이 가동되기까지의 핵심 시퀀스는 다음과 같습니다.
 
-1. board_init_f() 진입: 시스템 클록, PMIC(전원), UART 등을 먼저 초기화합니다.
-2. spl_dram_init() 호출: 본격적인 DRAM 초기화 컨트롤 타워 역할을 수행합니다.
+1. `board_init_f()` 진입: 시스템 클록, PMIC(전원), UART 등을 먼저 초기화합니다.
+2. `spl_dram_init()` 호출: 본격적인 DRAM 초기화 컨트롤 타워 역할을 수행합니다.
 3. DDR PHY 펌웨어 로드: 보드에 내장된 DDR PHY MCU용 바이너리(IMEM/DMEM)를 로드합니다.
 4. DDR 컨트롤러 및 PHY 레지스터 셋팅: i.MX8M DDR Tool(RPA)로 생성된 레지스터 값(타이밍 등)을 주입합니다.
 5. DDR PHY Training 실행: 1D(전압/타이밍 최적화) 및 2D(2차원 마진 최적화) 트레이닝을 수행하여 링크를 안정화합니다.
