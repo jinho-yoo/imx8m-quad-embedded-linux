@@ -95,6 +95,56 @@ int power_init_board(void)
 
 </details>
 
+<details>
+<summary>📂 [코드보기] pmic_get("pmic@4b", &dev) 보기</summary>
+`pmic_get("pmic@4b", &dev);` 코드는 U-Boot의 **DM(Driver Model, 드라이버 모델)** 프레임워크를 사용하여 I2C 버스에 연결된 특정 PMIC(Power Management IC) 장치를 찾아 제어 구조체 포인터에 할당하는 하드웨어 드라이버 핵심 코드입니다.
+
+이 한 줄의 코드가 내부적으로 어떤 의미를 가지고 어떻게 작동하는지 상세히 풀어서 설명해 드릴게요.
+
+### 1. 매개변수(Parameter)별 상세 의미
+
+C```
+pmic_get("pmic@4b", &dev);
+
+```
+
+- "pmic@4b" (장치 이름/노드 이름):U-Boot의 디바이스 트리(Device Tree, .dts 파일)에 정의된 PMIC 장치의 이름을 가리킵니다.@4b 부분은 이 PMIC 칩이 I2C 버스 상에서 0x4b라는 7비트 슬레이브 주소(Slave Address)를 사용하고 있음을 직관적으로 나타냅니다. (i.MX8MQ EVK 보드의 경우 대개 ROHM 사의 BD71837 PMIC 칩 주소에 해당합니다.)
+- &dev (장치 구조체 포인터의 주소):성공적으로 장치를 찾으면, 해당 PMIC를 제어할 수 있는 정보가 담긴 struct udevice 타입의 객체 주소(핸들러)를 dev 변수에 채워줍니다.이후 전압을 바꿀 때(regulator_set_value(dev, ...) 등) 이 dev 변수를 이정표 삼아 명령을 내리게 됩니다.
+
+### 2. 내부 동작 메커니즘 (U-Boot DM 기반)
+
+이 함수가 실행되면 U-Boot 내부에서는 다음과 같은 하드웨어 탐색 과정을 거칩니다.
+
+1. 디바이스 트리 검색: 시스템에 등록된 장치 목록 중 "pmic@4b"라는 이름이나 호환성 문자열(compatibility string)을 가진 노드가 있는지 찾습니다.
+2. 드라이버 매칭(Probe): 해당 장치에 맞는 PMIC 드라이버(예: drivers/power/pmic/bd71837.c)가 가동 중인지 확인합니다.
+3. I2C 버스 활성화: PMIC가 물리적으로 연결된 I2C 버스 채널을 활성화하고 통신할 준비를 마칩니다.
+4. 인스턴스 반환: 모든 연결이 확인되면 이를 추상화한 dev 주소를 반환하여, 상위 레이어(SPL 부트로더)에서 하드웨어 레지스터를 직접 조작하지 않고도 함수 호출만으로 전압을 제어할 수 있게 만듭니다.
+
+### 3. 리턴 값 처리 및 실전 코드 패턴
+
+실제 소스 코드에서는 이 함수가 장치를 찾았는지 못 찾았는지 검증하는 예외 처리가 반드시 함께 묶여서 사용됩니다.
+
+```
+struct udevice *dev;
+int ret;
+
+/* PMIC 장치 가져오기 시도 */
+ret = pmic_get("pmic@4b", &dev); 
+
+if (ret) {
+    /* ret이 0이 아니면 에러가 발생한 것입니다 (예: -ENODEV) */
+    printf("PMIC 장치를 찾을 수 없습니다! (에러 코드: %d)\n", ret);
+    return ret; 
+}
+
+/* 성공 시 다음 단계인 전압 설정으로 진행 */
+regulator_set_value(dev, "BUCK5", 1100000); 
+
+```
+
+- 에러가 발생하는 주요 원인:회로 상에서 PMIC로 들어가는 전원에 문제가 있어 chip이 응답하지 않을 때디바이스 트리(.dts) 파일에 설정된 I2C 주소나 핀 믹싱(IOMUX) 설정이 실제 커스텀 보드 회로와 다를 때
+
+</details>
 
 ## 3. 커스텀 보드 개발 시 디버그 포인트 (핵심 팁)
 
