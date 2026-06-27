@@ -57,9 +57,9 @@ i.MX8M 계열은 전력 소모와 성능의 밸런스를 위해 매우 복잡한
 
 ## 2. i.MX8MQ EVK 기준의 소스 코드 상세 분석
 
-실제 `board/freescale/mx8mq_evk/spl.c` (또는 해당 보드의 PMIC 드라이버) 소스 레벨에서 이 함수가 어떻게 구현되어 작동하는지 단계별로 매핑해 드리겠습니다.
+실제 `board/freescale/mx8mq_evk/spl.c` (또는 해당 보드의 PMIC 드라이버) 소스 레벨에서 이 함수가 어떻게 구현되어 작동하는지 단계별로 매핑합니다.
 
-C```
+```
 int power_init_board(void)
 {
     struct udevice *dev;
@@ -89,7 +89,6 @@ int power_init_board(void)
     printf("DDRINFO: PMIC VDD_ARM/VDD_DRAM set done\n");
     return 0;
 }
-
 ```
 
 ## 3. 커스텀 보드 개발 시 디버그 포인트 (핵심 팁)
