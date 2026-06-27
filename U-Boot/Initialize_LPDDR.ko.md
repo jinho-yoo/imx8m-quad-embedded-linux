@@ -41,6 +41,62 @@ void board_init_f(ulong dummy)
 }
 </pre>
 
+-세부함수설명  
+i.MX8MQ EVK 보드 등 embedded 시스템에서 SPL 단계의 **power_init_board()** 함수는 보드가 켜진 직후, 메인 SoC(i.MX8MQ)와 외부 메모리(LPDDR4)가 오작동 없이 안정적으로 구동될 수 있도록 **PMIC(Power Management IC)칩을 제어하여 필요한 전압을 정확하게 맞추고 공급하는 핵심 하드웨어 초기화 함수**입니다.
+
+i.MX8M 계열은 전력 소모와 성능의 밸런스를 위해 매우 복잡한 전원 도메인(SoC Core, GPU, VPU, DDR 등)을 가집니다. 따라서 이 함수가 정상적으로 실행되지 않으면, 이후 단계인 DDR 트레이닝이나 커널 부팅 시 전력 부족으로 인해 보드가 다운(Hang)되거나 리셋되는 현상이 발생합니다.
+
+## 1. power_init_board()의 전체 시퀀스 및 개념
+
+이 함수가 실행되는 메커니즘은 다음과 같은 순서로 진행됩니다.
+
+1. I2C 버스 초기화: PMIC 칩은 대개 i.MX8M의 I2C 버스를 통해 제어됩니다. 레지스터를 읽고 쓰기 위해 I2C를 먼저 활성화합니다.
+2. PMIC 칩 식별: 보드에 장착된 PMIC(예: NXP PF8100 등)가 맞는지 칩 ID를 레지스터로 확인합니다.
+3. 전압 레일(Voltage Rail) 조정: CPU, DDR 등 각 파트가 요구하는 정확한 전압 값(V)을 세팅합니다.
+4. 부팅 클록 전원 최적화: 고속 부팅 및 안정성을 위해 필요한 클록 공급 전원을 켭니다.
+
+## 2. i.MX8MQ EVK 기준의 소스 코드 상세 분석
+
+실제 `board/freescale/mx8mq_evk/spl.c` (또는 해당 보드의 PMIC 드라이버) 소스 레벨에서 이 함수가 어떻게 구현되어 작동하는지 단계별로 매핑해 드리겠습니다.
+
+C```
+int power_init_board(void)
+{
+    struct udevice *dev;
+    int ret;
+
+    /* 단계 1: I2C 버스를 통해 PMIC 장치 검색 */
+    /* U-Boot의 DM(Driver Model)을 사용하여 'ROHM BD71837' 또는 'NXP PF8100' 등의 PMIC를 찾습니다. */
+    ret = pmic_get("pmic@4b", &dev); 
+    if (ret == -ENODEV) {
+        printf("DDRINFO: PMIC device not found\n");
+        return 0;
+    }
+
+    /* 단계 2: ARM Core(CPU) 전압 설정 (예: 1.0V) */
+    /* i.MX8MQ가 최고 클록으로 뛰기 위해 CPU 전원 레일(BUCK1/BUCK2 등)의 전압을 올려줍니다. */
+    regulator_set_value(dev, "BUCK1", 1000000); // 1.0V (주파수/동작 조건에 따라 상이)
+
+    /* 단계 3: ★가장 중요★ LPDDR4 메모리 구동 전압 설정 */
+    /* LPDDR4의 정상 작동을 위해서는 VDD2(1.1V), VDD1(1.8V), VDDQ(0.6V) 전원이 필수적입니다. */
+    /* 이 전압이 칼같이 공급되어야 뒤이어 호출되는 spl_dram_init()의 트레이닝이 성공합니다. */
+    regulator_set_value(dev, "BUCK5", 1100000); // LPDDR4 VDD2 전원용 1.1V 세팅
+    regulator_set_value(dev, "BUCK6", 1100000); // LPDDR4 VDDQ 전원용 1.1V 또는 0.6V 세팅 (보드 회로도에 맞춤)
+    
+    /* 단계 4: NVCC_DRAM 및 기타 SoC 내부 도메인(드라마 믹스) 전원 활성화 */
+    regulator_set_value(dev, "LDO5", 1800000);  // IO 및 주변 인터페이스용 1.8V
+
+    printf("DDRINFO: PMIC VDD_ARM/VDD_DRAM set done\n");
+    return 0;
+}
+
+```
+
+## 3. 커스텀 보드 개발 시 디버그 포인트 (핵심 팁)
+
+- I2C 통신 실패 문제: 만약 power_init_board()에서 보드가 멈추거나 에러를 뿜는다면, 십중팔구 PMIC와 SoC 간의 I2C 핀맵(핀 믹싱) 설정이 틀렸거나 Pull-up 저항 불량인 경우입니다. SPL의 board_early_init_f()에서 I2C IOMUX 설정을 먼저 제대로 마쳤는지 교차 검증해야 합니다.
+- PMIC 칩셋 변경 시: EVK 보드는 NXP나 ROHM의 특정 PMIC를 사용하지만, 양산용 커스텀 보드를 만들 때 단가나 수급 문제로 타사 PMIC로 회로를 바꾸는 경우가 많습니다. 이때는 power_init_board() 내부의 레지스터 주소와 레일 이름(BUCK1, LDO5 등)을 새 PMIC 데이터시트에 맞게 완전히 새로 매핑해 주어야 합니다.
+
 
 ### 단계 2: DRAM 초기화 진입 및 구조체 설정
 
