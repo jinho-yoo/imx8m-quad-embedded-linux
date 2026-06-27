@@ -92,6 +92,7 @@ int power_init_board(void)
     return 0;
 }
 ```
+</details>
 
 ## 3. 커스텀 보드 개발 시 디버그 포인트 (핵심 팁)
 
