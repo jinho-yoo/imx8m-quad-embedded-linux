@@ -61,6 +61,7 @@ i.MX8M 계열은 전력 소모와 성능의 밸런스를 위해 매우 복잡한
 
 <details>
 <summary>📂 <b>[클릭] power_init_board() 전체 소스 코드 보기</b></summary>
+    
 ```
 int power_init_board(void)
 {
@@ -92,7 +93,9 @@ int power_init_board(void)
     return 0;
 }
 ```
+
 </details>
+
 
 ## 3. 커스텀 보드 개발 시 디버그 포인트 (핵심 팁)
 
