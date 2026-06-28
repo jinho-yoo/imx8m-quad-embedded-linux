@@ -120,6 +120,45 @@ pmic_get("pmic@4b", &dev);
 3. I2C 버스 활성화: PMIC가 물리적으로 연결된 I2C 버스 채널을 활성화하고 통신할 준비를 마칩니다.
 4. 인스턴스 반환: 모든 연결이 확인되면 이를 추상화한 dev 주소를 반환하여, 상위 레이어(SPL 부트로더)에서 하드웨어 레지스터를 직접 조작하지 않고도 함수 호출만으로 전압을 제어할 수 있게 만듭니다.
 
+- 아래는 dts 파일 내의 내용입니다.
+임베디드 리눅스(또는 U-Boot) 디바이스 트리(DTS)에서 `pmic_get("pmic@4b", &dev)`와 `regulator_set_value(dev, "BUCK5", 1100000)` 가 정상적으로 동작하기 위해 필요한 **DTS 코드 매핑 예시**입니다.
+
+보통 `pmic@4b`라는 이름은 I2C 버스 주소(`0x4b`)를 의미하므로, 해당 PMIC는 **I2C 컨트롤러 노드 하위**에 선언되어야 합니다. 또한 `BUCK5`라는 레귤레이터 이름은 PMIC 내부의 **sub-node(자식 노드)** 또는 **regulator-name 속성**으로 정의됩니다.
+
+```
+&i2c0 {
+    status = "okay";
+    clock-frequency = <400000>;
+
+    /* pmic_get("pmic@4b", ...)과 매핑되는 부분 */
+    pmic@4b {
+        compatible = "rohm,bd71847"; /* 예시: 실제 사용하는 PMIC 드라이버 호환성 문자열 */
+        reg = <0x4b>;                /* I2C 슬레이브 주소 0x4b */
+
+        /* 레귤레이터들을 정의하는 서브 노드 */
+        regulators {
+            /* regulator_set_value(dev, "BUCK5", ...)와 매핑되는 부분 */
+            BUCK5 {
+                regulator-name = "BUCK5"; /* U-Boot/커널에서 이 이름으로 검색합니다 */
+                regulator-min-microvolt = <700000>;   /* 0.7V */
+                regulator-max-microvolt = <1300000>;  /* 1.3V */
+                regulator-boot-on;
+                regulator-always-on;
+            };
+            
+            /* 필요한 다른 BUCK이나 LDO 규격들도 여기에 추가됩니다 */
+        };
+    };
+};
+
+```
+
+o 코드와 DTS의 핵심 연결 고리  
+
+- pmic@4b (노드 이름 및 주소): * pmic_get("pmic@4b", &dev) 함수는 디바이스 트리에서 노드 이름이 pmic@4b인 것을 찾거나, 드라이버 플러그인에 따라 해당 알리아스/이름을 기반으로 디바이스를 바인딩합니다.reg = <0x4b>; 속성을 통해 I2C 주소가 0x4b로 물리적 설정됩니다.
+- regulator-name = "BUCK5";:regulator_set_value(dev, "BUCK5", 1100000);를 호출했을 때, U-Boot의 Regulator 프레임워크는 해당 PMIC 장치(dev)의 자식 노드들을 돌며 regulator-name 속성 값이 "BUCK5"인 노드를 찾아냅니다.값으로 넘긴 1100000은 1.1V (1,100,000μV)를 의미하므로, DTS에 정의된 regulator-min-microvolt와 regulator-max-microvolt 범위 내에 있어야 정상적으로 전압이 변경됩니다.
+
+
 #### 3. 리턴 값 처리 및 실전 코드 패턴
 
 실제 소스 코드에서는 이 함수가 장치를 찾았는지 못 찾았는지 검증하는 예외 처리가 반드시 함께 묶여서 사용됩니다.
